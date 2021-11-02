@@ -1,0 +1,181 @@
+.container {
+  position: relative; }
+
+form {
+  width: 100%; }
+
+.coupon-preview {
+  position: absolute;
+  width: 427px;
+  display: inline-block;
+  right: 15px;
+  top: 80px; }
+
+.coupon-detail-preview-container {
+  background: url('/img/coupon-preview-bground2.png');
+  height: 750px;
+  background-size: 100%; }
+
+.coupon-list-preview-container {
+  background: url('/img/coupon-preview-bground2.png');
+  margin-top: 20px;
+  height: 270px;
+  background-size: 100%;
+  position: relative; }
+
+.coupon-list-preview-content {
+  position: relative;
+  height: 133px;
+  top: 54px;
+  border-bottom: 1px solid #87A0AC; }
+
+.coupon-detail-preview-content {
+  position: relative;
+  height: 100%;
+  top: 54px; }
+
+.coupon-detail-preview-image {
+  position: absolute;
+  width: 427px;
+  height: 427px;
+  display: inline-block;
+  top: -1px;
+  border-bottom: 1px solid #87A0AC; }
+  .coupon-detail-preview-image .coupon-detail-preview-image-uploaded {
+    width: 100%; }
+  .coupon-detail-preview-image .coupon-detail-preview-image-pill {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 5px;
+    top: 8px; }
+    .coupon-detail-preview-image .coupon-detail-preview-image-pill > img {
+      width: 100%; }
+    .coupon-detail-preview-image .coupon-detail-preview-image-pill > div {
+      height: 30px;
+      line-height: 30px;
+      font-size: 20px;
+      font-family: 'Gotham-Book';
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 35px;
+      width: 100%;
+      text-align: center;
+      color: white; }
+
+.coupon-list-preview-image {
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  top: -1px; }
+  .coupon-list-preview-image > img {
+    width: 100%; }
+
+.coupon-list-preview-pill {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 5px;
+  top: 8px; }
+  .coupon-list-preview-pill > div {
+    color: white;
+    position: relative;
+    top: -52px;
+    font-size: 18px;
+    font-family: 'Gotham-Book';
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    height: 35px; }
+  .coupon-list-preview-pill > img {
+    width: 100%; }
+
+.coupon-list-preview-body {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  left: 0px;
+  padding: 10px;
+  font-family: 'Gotham-Book';
+  text-align: center;
+  color: #ffffff; }
+
+.coupon-list-preview-body-backgound {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  left: 0px;
+  padding: 10px;
+  background-color: #CED9DE;
+  opacity: 0.85;
+  filter: alpha(opacity=85); }
+
+.coupon-detail-preview-body {
+  font-family: 'Gotham-Book';
+  position: absolute;
+  top: 427px;
+  border-top: 3px solid black;
+  width: 100%;
+  padding: 8px 6px 8px 20px; }
+
+.coupon-list-preview-body-tagline {
+  width: 100%;
+  height: 60px;
+  line-height: 32px;
+  font-size: 25px;
+  overflow: hidden; }
+
+.coupon-detail-preview-body-tagline {
+  min-height: 30px;
+  line-height: 30px;
+  font-size: 24px;
+  margin-bottom: 9px; }
+
+.coupon-list-preview-body-endDate {
+  width: 100%;
+  font-size: 18px;
+  margin-top: 100px;
+  margin-left: 20px; }
+
+.coupon-detail-preview-body-endDate, .coupon-detail-preview-body-store {
+  width: 100%;
+  font-size: 18px; }
+
+.coupon-detail-preview-body-description {
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: 'Gotham-Light';
+  letter-spacing: 0.02em;
+  line-height: 31px; }
+
+.logo-coupon {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 87px;
+  height: 26px; }
+
+.coupon-back {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  margin: auto; }
+
+.coupon-back img {
+  width: 120px; }
+
+.coupon-beacon {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  margin: auto; }
+
+.coupon-beacon img {
+  width: 130px; }

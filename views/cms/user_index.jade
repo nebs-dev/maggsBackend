@@ -1,0 +1,31 @@
+extends ./base
+block title
+    title= __('Users')
+block append header_styles
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('User information')
+
+            if ( reqUser.superadmin )
+                a.btn.btn-primary.pull-right(href='/cms/user/create')= __('New User')
+
+    table.table.table-striped
+        thead
+            tr
+                th= __('User ID')
+                th= __('Email')
+                th= __('Email Confirmed')
+                th= __('Superadmin')
+        tbody
+            - for user in users
+                tr
+                    td= user.id
+                    td= user.email
+                    td= user.email_confirmed
+                    td= user.superadmin
+                    if ( reqUser.superadmin )
+                        td
+                            a(href='/cms/user/edit/' + user.id class="btn btn-default btn-xs table-button")= __('Edit')
+                            a(href='/cms/user/delete/' + user.id class="btn btn-danger btn-xs table-button")= __('Delete')
+block append footer_scripts

@@ -1,0 +1,18 @@
+extends ./base
+block title
+    title= __('Settings')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+block container-content
+
+    a.back-button(href="/employee")
+    div.tab-content
+        div.row.coupons
+            div.coupon.col-md-12
+                h3= error
+
+block append footer_scripts
+    script(type="text/javascript")
+        |   delete localStorage.storeID;
+        |   delete localStorage.storeSecret;

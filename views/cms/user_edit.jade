@@ -1,0 +1,31 @@
+extends ./base
+block title
+    title= __('User edit')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12
+            h1= __('Edit user')
+        .col-sm-12.col-md-6
+            form(role="form" action="" method="POST")
+                div.form-group
+                    label(for="email")= __('Email')
+                    input.form-control#email(required="true" type="email" name="email" placeholder="#{__('Email')}" value=user.email)
+                div.form-group
+                    label(for="password")= __('Password')
+                    input.form-control#password(type="password" name="password" placeholder="#{__('Password')}")
+                div.form-group
+                    label(for="email_confirmed")= __('Email Confirmed')
+                    input.float-checkbox#email_confirmed(type="checkbox" name="email_confirmed" checked=user.email_confirmed)
+                div.form-group
+                    label(for="superadmin")= __('Superadmin')
+                    input.float-checkbox#superadmin(type="checkbox" name="superadmin" checked=user.superadmin)
+                div.form-group
+                    label(for="store")= __('Store')
+                    select.form-control(required="true" name="store")
+                        for store in stores
+                           option(value=store.id selected=store_id === store.id) #{store.name}
+                input.btn.btn-success.pull-right(type='submit',value=__('Save user'))
+
+block append footer_scripts

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.swisspost.com/catalystSpsMem" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.swisspost.com/catalystSpsMem">
+	<xs:import schemaLocation="ServiceMemXsd1.xsd" namespace="http://www.swisspost.com/CatSpsWs/MemService"/>
+	<xs:element name="GetMemberInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="memberInfoRequest" nillable="true" type="q1:MemberInfoRequest" xmlns:q1="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetMemberInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetMemberInfoResult" nillable="true" type="q2:Response" xmlns:q2="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="memberInfo" nillable="true" type="q3:MemberInfo" xmlns:q3="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetTransactionInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="transactionInfoRequest" nillable="true" type="q4:TransactionInfoRequest" xmlns:q4="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetTransactionInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetTransactionInfoResult" nillable="true" type="q5:Response" xmlns:q5="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="transactionInfo" nillable="true" type="q6:TransactionInfo" xmlns:q6="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetDeviceInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="deviceInfoRequest" nillable="true" type="q7:DeviceInfoRequest" xmlns:q7="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetDeviceInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetDeviceInfoResult" nillable="true" type="q8:Response" xmlns:q8="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="deviceInfo" nillable="true" type="q9:DeviceInfo" xmlns:q9="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ConvertPointsToCash">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="convertPointsToCashRequest" nillable="true" type="q10:ConvertPointsToCashRequest" xmlns:q10="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ConvertPointsToCashResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="ConvertPointsToCashResult" nillable="true" type="q11:Response" xmlns:q11="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="deviceInfo" nillable="true" type="q12:DeviceInfo" xmlns:q12="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetDeviceImage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="DeviceImageRequest" nillable="true" type="q13:DeviceImageRequest" xmlns:q13="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetDeviceImageResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetDeviceImageResult" nillable="true" type="q14:Response" xmlns:q14="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="deviceImage" nillable="true" type="xs:base64Binary"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateMemberProfile">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="memberProfileRequest" nillable="true" type="q15:MemberProfileRequest" xmlns:q15="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateMemberProfileResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="UpdateMemberProfileResult" nillable="true" type="q16:Response" xmlns:q16="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateDeviceStatus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="updateDeviceStatusRequest" nillable="true" type="q17:UpdateDeviceStatusRequest" xmlns:q17="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateDeviceStatusResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="UpdateDeviceStatusResult" nillable="true" type="q18:Response" xmlns:q18="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Ping">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PingResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="PingResult" nillable="true" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegisterDevice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="registerDeviceRequest" nillable="true" type="q19:RegisterDeviceRequest" xmlns:q19="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegisterDeviceResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="RegisterDeviceResult" nillable="true" type="q20:Response" xmlns:q20="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="deviceId" nillable="true" type="xs:string"/>
+				<xs:element minOccurs="0" name="cvc" nillable="true" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegisterMember">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="memberRequest" nillable="true" type="q21:MemberRequest" xmlns:q21="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegisterMemberResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="RegisterMemberResult" nillable="true" type="q22:Response" xmlns:q22="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="memberId" type="xs:long"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateMember">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="memberRequest" nillable="true" type="q23:MemberRequest" xmlns:q23="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateMemberResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="UpdateMemberResult" nillable="true" type="q24:Response" xmlns:q24="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetBillingInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="billingInfoRequest" nillable="true" type="q25:BillingInfoRequest" xmlns:q25="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetBillingInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetBillingInfoResult" nillable="true" type="q26:Response" xmlns:q26="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="billingInfo" nillable="true" type="q27:BillingInfo" xmlns:q27="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CheckReliability">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="memberInfoRequest" nillable="true" type="q28:MemberInfoRequest" xmlns:q28="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CheckReliabilityResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="CheckReliabilityResult" nillable="true" type="q29:Response" xmlns:q29="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="hasReliability" type="xs:boolean"/>
+				<xs:element minOccurs="0" name="limit" type="xs:long"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PersonaliseTransaction">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="transactionRequest" nillable="true" type="q30:PersonaliseTransactionRequest" xmlns:q30="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PersonaliseTransactionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="PersonaliseTransactionResult" nillable="true" type="q31:Response" xmlns:q31="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="memberId" type="xs:long"/>
+				<xs:element minOccurs="0" name="currentPointScore" type="xs:long"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchMember">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="searchMemberRequest" nillable="true" type="q32:MemberRequest" xmlns:q32="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchMemberResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="SearchMemberResult" nillable="true" type="q33:Response" xmlns:q33="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="memberInfoList" nillable="true" type="q34:ArrayOfMemberInfo" xmlns:q34="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ZipCityLookup">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="zipCityLookupRequest" nillable="true" type="q35:ZipCityLookupRequest" xmlns:q35="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ZipCityLookupResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="ZipCityLookupResult" nillable="true" type="q36:Response" xmlns:q36="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="zipCityInfos" nillable="true" type="q37:ArrayOfZipCityInfo" xmlns:q37="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetMemberDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="memberInfoRequest" nillable="true" type="q38:MemberInfoRequest" xmlns:q38="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetMemberDetailResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetMemberDetailResult" nillable="true" type="q39:Response" xmlns:q39="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="memberDetail" nillable="true" type="q40:MemberDetail" xmlns:q40="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VerifyUsernamePassword">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="unamepwdRequest" nillable="true" type="q41:UsernamePasswordRequest" xmlns:q41="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VerifyUsernamePasswordResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="VerifyUsernamePasswordResult" nillable="true" type="q42:Response" xmlns:q42="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="memberId" type="xs:long"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AdjustPointBalance">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="adjustpointsRequest" nillable="true" type="q43:AdjustPointBalanceRequest" xmlns:q43="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AdjustPointBalanceResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="AdjustPointBalanceResult" nillable="true" type="q44:Response" xmlns:q44="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateSMProfile">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="smProfileRequest" nillable="true" type="q45:SMProfileRequest" xmlns:q45="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UpdateSMProfileResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="UpdateSMProfileResult" nillable="true" type="q46:Response" xmlns:q46="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetMemberProductImages">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="productRequest" nillable="true" type="q47:MemberProductRequest" xmlns:q47="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetMemberProductImagesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetMemberProductImagesResult" nillable="true" type="q48:Response" xmlns:q48="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="productImage" nillable="true" type="q49:ArrayOfProductImage" xmlns:q49="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetSMBadgeInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="badgeRequest" nillable="true" type="q50:SmBadgeRequest" xmlns:q50="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetSMBadgeInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="GetSMBadgeInfoResult" nillable="true" type="q51:Response" xmlns:q51="http://www.swisspost.com/CatSpsWs/MemService"/>
+				<xs:element minOccurs="0" name="badgeList" nillable="true" type="q52:ArrayOfOtherInfo" xmlns:q52="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ResetUsernamePassword">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="unamepwdRequest" nillable="true" type="q53:UsernamePasswordRequest" xmlns:q53="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ResetUsernamePasswordResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="ResetUsernamePasswordResult" nillable="true" type="q54:Response" xmlns:q54="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RedeemReward">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="orderRequest" nillable="true" type="q55:OrderRequest" xmlns:q55="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RedeemRewardResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="RedeemRewardResult" nillable="true" type="q56:Response" xmlns:q56="http://www.swisspost.com/CatSpsWs/MemService"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

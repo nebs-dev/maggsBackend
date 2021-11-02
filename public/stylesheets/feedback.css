@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('/fonts/gotham-light-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-light-webfont.woff') format('woff'), url('/fonts/gotham-light-webfont.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('/fonts/gotham-book-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-book-webfont.woff') format('woff'), url('/fonts/gotham-book-webfont.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('/fonts/icomoon.eot');
+  src: local('☺'), url('/fonts/icomoon.woff') format('woff'), url('/fonts/icomoon.ttf') format('truetype'); }
+
+body.feedback, body.feedback-confirmation {
+  text-align: center;
+  font-family: Gotham-Book;
+  margin: 0 15px;
+  font-size: 17px;
+  background: #EBEBEB; }
+  body.feedback h1, body.feedback-confirmation h1 {
+    font-size: 18px; }
+  body.feedback label, body.feedback-confirmation label {
+    font-family: Gotham-Light; }
+  body.feedback button[type="submit"], body.feedback a, body.feedback-confirmation button[type="submit"], body.feedback-confirmation a {
+    color: #979797;
+    background: none;
+    border: none;
+    font-size: 17px;
+    padding-top: 15px; }
+  body.feedback select, body.feedback textarea, body.feedback-confirmation select, body.feedback-confirmation textarea {
+    line-height: 40px;
+    color: #828282;
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #979797;
+    padding: 0 5px;
+    background: #FAFAFA;
+    margin: 10px 22px; }
+  body.feedback textarea, body.feedback-confirmation textarea {
+    margin: 0;
+    line-height: 1.2em;
+    min-height: 80px;
+    padding: 5px; }
+  body.feedback .textarea-wrapper, body.feedback-confirmation .textarea-wrapper {
+    padding: 0 20px; }
+  body.feedback .radio, body.feedback-confirmation .radio {
+    line-height: 40px;
+    margin: 10px 22px; }
+    body.feedback .radio label, body.feedback-confirmation .radio label {
+      font-family: Gotham-Book;
+      margin: 0;
+      padding: 0 5px;
+      width: 100%;
+      background: #dbdbdb;
+      border: 1px solid #979797;
+      text-align: center; }
+    body.feedback .radio input[type="radio"], body.feedback-confirmation .radio input[type="radio"] {
+      display: none; }
+      body.feedback .radio input[type="radio"]:checked + label, body.feedback-confirmation .radio input[type="radio"]:checked + label {
+        background: #FAFAFA; }
+  body.feedback .error, body.feedback-confirmation .error {
+    color: #ff3835; }
+  body.feedback .feedback-confirmation-box, body.feedback-confirmation .feedback-confirmation-box {
+    height: 100%; }
+  body.feedback .feedback-confirmation-box-text, body.feedback-confirmation .feedback-confirmation-box-text {
+    margin: 50px; }
+  body.feedback .feedback-confirmation-box-image, body.feedback-confirmation .feedback-confirmation-box-image {
+    width: 100%;
+    margin: 50px 0 0 0; }
+    body.feedback .feedback-confirmation-box-image img, body.feedback-confirmation .feedback-confirmation-box-image img {
+      width: 150px; }
+  body.feedback .feedback-confirmation-box-button, body.feedback-confirmation .feedback-confirmation-box-button {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    left: 0;
+    right: 0; }
+  body.feedback .anonym, body.feedback-confirmation .anonym {
+    font-size: 12px;
+    font-family: Gotham-Light;
+    margin-top: -15px; }

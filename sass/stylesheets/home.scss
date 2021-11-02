@@ -1,0 +1,55 @@
+@import 'mixins';
+@import 'variables';
+
+$coupon-background: $seagull;
+$coupon-background-hover: $hippie-blue;
+$coupon-text: $white;
+
+div.tab-content {
+  margin-top: 20px;
+
+  .coupons {
+    color: $coupon-text;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+
+    .coupons-item {
+      @include rounded();
+      margin-bottom: 20px;
+
+      td {
+        background: $coupon-background;
+        padding: 20px;
+
+        &.coupons-item-name {
+          width: 50%;
+          @include rounded(5px 0 0 5px);
+        }
+
+        &.coupons-item-code {
+          width: 25%;
+          text-align: center;
+
+          span.badge {
+            background: $coupon-text;
+            color: $coupon-background;
+            font-size: 1.5em;
+          }
+        }
+
+        &.coupons-item-accept {
+          @include rounded(0 5px 5px 0);
+          width: 25%;
+          cursor: pointer;
+          border-left: 1px solid $coupon-text;
+          text-align: center;
+
+          &:hover {
+            background: $coupon-background-hover;
+          }
+        }
+      }
+    }
+  }
+}

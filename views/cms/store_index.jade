@@ -1,0 +1,38 @@
+extends ./base
+block title
+    title= __('Stores')
+block append header_styles
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Store information')
+            if superadmin
+                a.btn.btn-primary.pull-right(href='/cms/store/create')= __('New store')
+
+    table.table.table-striped
+        thead
+            tr
+                th= __('Store ID')
+                th= __('Name')
+                th= __('Town')
+                th= __('Postcode')
+                th= __('Contact')
+                th= __('Key')
+                th= __('Secret')
+                th= __('Actions')
+        tbody
+            - for store in stores
+                tr
+                    td= store.id
+                    td= store.name
+                    td= store.town
+                    td= store.postcode
+                    td= store.contactEmail
+                    td= store.key
+                    td= store.secret
+                    td
+                        if superadmin
+                            a.delete(href='/cms/store/delete/' + store.id onclick="return confirm('Are you really sure? All appointments, beacons, campaigns and related data for this store will be deleted');" class="btn btn-danger btn-xs table-button deleteBtn")= __('Delete')
+                        a.edit(href='/cms/store/edit/' + store.id class="btn btn-default btn-xs table-button")= __('Edit')
+
+block append footer_scripts

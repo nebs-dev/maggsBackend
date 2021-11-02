@@ -1,0 +1,33 @@
+@mixin rounded($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($args:0.3s) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    -ms-transition: $args;
+    transition: $args;
+}
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('/fonts/gotham-light-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-light-webfont.woff') format('woff'), url('/fonts/gotham-light-webfont.ttf') format('truetype');
+}
+$Gotham-Light: Gotham-Light;
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('/fonts/gotham-book-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-book-webfont.woff') format('woff'), url('/fonts/gotham-book-webfont.ttf') format('truetype');
+}
+$Gotham-Book: Gotham-Book;
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('/fonts/icomoon.eot');
+  src: local('☺'), url('/fonts/icomoon.woff') format('woff'), url('/fonts/icomoon.ttf') format('truetype');
+}

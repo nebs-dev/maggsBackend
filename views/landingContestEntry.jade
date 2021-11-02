@@ -1,0 +1,72 @@
+block variables
+doctype html
+html
+    head
+        block title
+            title Contest ##{data.contest.hashtag}
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/stylesheets/landing.css")
+
+        // Twitter
+        meta(name="twitter:card" content="")
+        meta(name="twitter:site" content="")
+        meta(name="twitter:creator" content="")
+        meta(name="twitter:title" content="MAGGS")
+        meta(name="twitter:description" content="MAGGS #{data.contest.hashtag} contest - #{data.customer.nickname}")
+        meta(name="twitter:image" content="#{data.baseUrl}#{data.contest.icon}")
+
+        // Facebook
+        meta(property="og:title" content="MAGGS")
+        meta(property="og:type" content="")
+        meta(property="og:url" content="http://www.facebook.com/Maggs.Bern")
+        meta(property="og:image" content="#{data.baseUrl}#{data.contest.icon}")
+        meta(property="og:site_name" content="MAGGS")
+        meta(property="fb:admins" content="")
+        meta(property="og:description" content="MAGGS #{data.contest.hashtag} contest - #{data.customer.nickname}")
+
+    body(class=body_class)
+        div.container-fluid
+            div.row
+                nav.navbar.navbar-inverse(role="navigation")
+                    div.container
+                        div.navbar-logo
+                            img(src="/img/home-1-icon-logo@3xv2.png")
+        .container
+            div.contest-div
+                div.contest-image
+                    img(src="#{data.contest.icon}")
+                div.contest-background
+                div.contest-hashtag
+                    span="#" + data.contest.hashtag + " Contest"
+
+            div.contest-div
+                div.contest-image
+                    img(src="#{data.entry.photo}")
+                div.contest-background
+                div.entry-customer
+                    span.username #{data.customer.nickname}
+                    img(src="#{data.level.image}")
+
+            div.contest-div
+                p Jetzt kostenlos die MAGGS App laden um für dieses Bild abzustimmen oder um selbst am Contest mitzumachen.
+
+            div.contest-div
+                div.contest-appstore
+                    a(href="https://itunes.apple.com/us/app/maggs-app/id1011896538?l=de&ls=1&mt=8")
+                        img(src="/img/appstore.png")
+                div.contest-googleplay
+                    a(href="https://play.google.com/store/apps/details?id=ch.loeb.androidapp")
+                        img(src="/img/googleplay.png")
+
+
+        block footer_scripts
+            script(src="https://code.jquery.com/jquery-1.10.2.min.js")
+            script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js")
+            script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+            script(src="https://maps.googleapis.com/maps/api/js?sensor=false")
+            script(src="/js/bootstrap-typeahead.js")
+            script(src="/js/jquery.addresspicker.js")
+            script(src="/js/parsley.min.js")
+            script(src="/js/main.js")
+            script(src="/js/cropper-custom.js")
+            script(src="/js/cropper.min.js")

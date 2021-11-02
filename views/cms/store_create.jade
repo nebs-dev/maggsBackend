@@ -1,0 +1,54 @@
+extends ./base
+block title
+    title= __('Store create')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/coupon_preview.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+block container-content
+    div.row
+        .col-sm-12.col-md-12
+            h1= __('Create store')
+        .col-sm-12.col-md-6
+            form(role="form" action="" method="POST")
+                div.form-group
+                    label(for="name")= __('Store name')
+                    input.form-control#storeName(required="true" type="text" name="name" placeholder="#{__('Store name')}")
+                div.form-group
+                    label(for="streetNr")= __('Street number')
+                    input.form-control#streetNumber(required="true" type="text" name="streetNr" placeholder="#{__('Street number')}")
+                div.form-group
+                    label(for="postcode")= __('Postcode')
+                    input.form-control#postcode(required="true" type="text" name="postcode" maxlength="5" placeholder="#{__('Postcode')}")
+                div.form-group
+                    label(for="town")= __('Town')
+                    input.form-control#town(required="true" type="text" name="town" placeholder="#{__('Town')}")
+                div.form-group
+                    label(for="phone")= __('Phone')
+                    input.form-control#phone(required="true" type="text" name="phone" placeholder="#{__('Phone')}")
+                div.form-group
+                    label(for="contactEmail")= __('Contact email')
+                    input.form-control#contactEmail(required="true" type="email" name="contactEmail" placeholder="#{__('Contact email')}")
+                div.form-group
+                    label(for="storemanagerEmail")= __('Store Manager Email')
+                    input.form-control#storemanagerEmail(required="true" type="email" name="storemanagerEmail" placeholder="#{__('Store Manager Email')}")
+                div.form-group
+                    label(for="key")= __('Store key')
+                    input.form-control#key(required="true" type="text" name="key" placeholder="#{__('Store key')}")
+                div.form-group
+                    label(for="secret")= __('Store secret')
+                    input.form-control#secret(required="true" type="text" name="secret" placeholder="#{__('Store secret')}")
+                div.form-group
+                    label(for="lat")= __('Latitude')
+                    input.form-control#lat(required="true" type="text" name="lat" placeholder="#{__('Latitude')}")
+                div.form-group
+                    label(for="long")= __('Longitude')
+                    input.form-control#long(required="true" type="text" name="long" placeholder="#{__('Longitude')}")
+                input.btn.btn-success.pull-right(type='submit' value=__('Save store'))
+        .col-sm-12.col-md-6
+            div.map-picker
+                div.form-group
+                    label= __('Address you want to search')
+                    input.form-control.map-addresspicker(type="text" placeholder="Address you want to search")
+                div.map-canvas        
+block append footer_scripts

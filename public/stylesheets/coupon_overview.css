@@ -1,0 +1,13 @@
+#campaignsTab {
+  margin-top: 20px; }
+
+a.statistics {
+  margin-left: 20px; }
+
+table#active_coupon_overview tbody > tr > td, table#active_geocoupon_overview tbody > tr > td, table#archived_coupon_overview tbody > tr > td, table#archived_geocoupon_overview tbody > tr > td {
+  vertical-align: middle; }
+  table#active_coupon_overview tbody > tr > td > img, table#active_geocoupon_overview tbody > tr > td > img, table#archived_coupon_overview tbody > tr > td > img, table#archived_geocoupon_overview tbody > tr > td > img {
+    max-width: 75px; }
+
+.is-hidden {
+  display: none; }

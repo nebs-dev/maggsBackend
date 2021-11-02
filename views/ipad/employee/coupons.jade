@@ -1,0 +1,59 @@
+extends ./base
+block title
+    title= __('Customer Coupons')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+block container-content
+    a.back-button(href="/employee")
+    h1.title= __('Coupons campaigns')
+
+    ul#campaignsTab.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+            a(href="#date-campaigns" role="tab" data-toggle="tab")= __('Date-based campaigns')
+        li(role="presentation")
+            a(href="#location-campaigns" role="tab" data-toggle="tab")= __('Location-based campaigns')
+
+    div.tab-content
+        div.tab-pane.active(role="tabpanel" id="date-campaigns")
+            div.row.coupons
+                - if (campaigns.length > 0) {
+                    - each campaign, index in campaigns
+                        div.coupon.col-md-12
+                            div.coupon-image
+                                div.icon
+                                    img(src="#{campaign.icon}")
+                                div.pill
+                                    img(src="/img/coupon-badge@2x.png")
+                                    span= campaign.value
+                            div.coupon-info
+                                div.coupon-name
+                                    h3= campaign.tagline
+                                div.coupon-date
+                                    span #{__('valid until')} #{dayToString(campaign.end_date)}
+                - } else {
+                    div.col-md-12
+                        h3= __('No coupon found.')
+                - }
+        div.tab-pane(role="tabpanel" id="location-campaigns")
+            div.row.coupons
+                - if (geo_campaigns.length > 0) {
+                - each geo_campaign, index in geo_campaigns
+                    div.coupon.col-md-12
+                        div.coupon-image
+                            div.icon
+                                img(src="#{geo_campaign.icon}")
+                            div.pill
+                                img(src="/img/coupon-badge@2x.png")
+                                span= geo_campaign.value
+                        div.coupon-info
+                            div.coupon-name
+                                h3= geo_campaign.tagline
+                            div.coupon-date
+                                span #{__('valid until')} #{dayToString(geo_campaign.end_date)}
+                - } else {
+                    div.col-md-12
+                        h3= __('No coupon found.')
+                - }

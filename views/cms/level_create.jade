@@ -1,0 +1,37 @@
+extends ./base
+block title
+    title= __('Level create')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12
+            h1= __('Create level')
+        .col-sm-12.col-md-6
+            form(role="form",action="",method="POST")
+                div.form-group
+                    label(for="title")= __('Level title')
+                    input.form-control#title(required="true" maxlength="40" type="text" name="title" placeholder="#{__('Level title')}")
+                div.form-group
+                    label(for="required")= __('Required points')
+                    input.form-control#required(required="true" maxlength="6" type="number" name="required" placeholder="#{__('Required points')}")
+                div.form-group
+                    label(for="points")= __('Points')
+                    input.form-control#points(required="true" maxlength="6" type="number" name="points" placeholder="#{__('Points')}")
+
+                div.form-group.cropper-form(style="width: 200px")
+                    label(for="female")= __('Female avatar')
+                    input(class="cropperFile" type="file" required="true")
+                    input(class="control cropperValue" type="hidden" name="female")
+                    div.cropper-container
+                        img(data-width="300" data-height="300" src="" class="cropper")
+
+                div.form-group.cropper-form(style="width: 200px")
+                    label(for="male")= __('Male avatar')
+                    input(class="cropperFile" type="file" required="true")
+                    input(class="control cropperValue" type="hidden" name="male")
+                    div.cropper-container
+                        img(data-width="300" data-height="300" src="" class="cropper")
+
+                input.btn.btn-success.pull-right(type='submit' value=__('Save level'))
+block append footer_scripts

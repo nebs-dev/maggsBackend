@@ -1,0 +1,25 @@
+extends ./base
+
+block title
+    title #{customer.firstname} #{customer.lastname}
+
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+
+block container-content
+    div.row.customer-info
+        div.col-md-4.customer-info-logo
+            a(href="/customer")
+                img(src="/img/home-1-icon-logo@3x.png")
+        div.col-md-4.customer-info-name
+            div.row.name #{customer.firstname} #{customer.lastname}
+            div.row.card-number #{customer.card_id}
+        div.col-md-4.customer-info-name
+            div.row.name #{store.name}
+        div.col-md-4.customer-info-code
+            div.qrcode
+                !{customer.qrcode}
+                //img(src="http://zxing.org/w/chart?cht=qr&chs=200x200&chld=L&choe=UTF-8&chl=#{customer.card_id}")
+    block coupon

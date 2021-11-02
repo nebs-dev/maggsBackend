@@ -1,0 +1,79 @@
+extends ./base
+block title
+    title= __('Feedback results')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+block container-content
+    a.back-button(href="/employee")
+    h1.title= __('Feedback results')
+    - if (error && error.length > 0) {
+        div.alert.alert-error= error
+    - }
+    ul#campaignsTab.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+            a(href="#feedback-statistics" role="tab" data-toggle="tab")= __('Statistics')
+        li(role="presentation")
+            a(href="#feedback-messages" role="tab" data-toggle="tab")= __('Messages')
+
+    div.tab-content
+        div.tab-pane.active(role="tabpanel" id="feedback-statistics")
+            - if (feedbacks) {
+                - each feedback in feedbacks
+                    div.statistics
+                        div.statistics-content
+                            h3= feedback.key + ' - ' + feedback.total + ' ' +__('feedbacks')
+                            canvas(id="chart-#{feedback.key}")
+            - } else {
+                h2= __('No feedback yet.')
+            - }
+        div.tab-pane(role="tabpanel" id="feedback-messages")
+            - if (messages) {
+                - each feed in messages
+                    - if (feed.comment)
+                        div(class="message message-evaluation-#{feed.id}")
+                            div.message-quote
+                                div.message-quote-customer
+                                    - if(feed.anonymous)
+                                        p= __('Anonymous customer')
+                                    - else if((!feed.customer.firstname || !feed.customer.lastname) && !feed.anonymous)
+                                        p= feed.customer.card_id
+                                    - else
+                                        p= feed.customer.firstname + ' ' + feed.customer.lastname
+                                div.message-quote-content= __(feed.claim)+': '+ feed.comment
+                                p= dateToString(feed.createdAt, true)
+            - } else {
+                h2= __('No feedback message yet.')
+            - }
+
+block append footer_scripts
+    script(src="/js/Chart.js")
+    - if (feedbacks) {
+        - each feedback in feedbacks
+            script(type="text/javascript")
+                |var data_#{feedback.key} = {
+                |   labels: [1,2,3,4,5],
+                |   datasets: [{
+                |       data: [#{feedback.ratings[1] || 0},#{feedback.ratings[2] || 0},#{feedback.ratings[3] || 0},#{feedback.ratings[4] || 0},#{feedback.ratings[5] || 0}]
+                |   }]
+                |};
+                |var options = {
+                |   showTooltips: false,
+                |   scaleFontSize: 18,
+                |   scaleFontColor: '#CCCCCC',
+                |   scaleLineColor: 'rgba(255,255,255, 0.3)',
+                |   scaleGridLineColor: 'rgba(255,255,255, 0.3)',
+                |   scaleFontFamily: 'Gotham-Light',
+                |};
+                |var ctx_#{feedback.key} = $('#chart-#{feedback.key}')[0].getContext("2d");
+                |var chart_#{feedback.key} = new Chart(ctx_#{feedback.key}).Bar(data_#{feedback.key}, options);
+                | ctx_#{feedback.key}.fillText(chart_#{feedback.key}.datasets[0].value + "%", ctx_#{feedback.key}.width/2 - 20, ctx_#{feedback.key}.width/2, 200);
+                | chart_#{feedback.key}.datasets[0].bars[0].fillColor = "#DDB185"; //bar 1
+                | chart_#{feedback.key}.datasets[0].bars[1].fillColor = "#DDCD85"; //bar 2
+                | chart_#{feedback.key}.datasets[0].bars[2].fillColor = "#CDDD85"; //bar 3
+                | chart_#{feedback.key}.datasets[0].bars[3].fillColor = "#B3E086"; //bar 4
+                | chart_#{feedback.key}.datasets[0].bars[4].fillColor = "#B3E086"; //bar 5
+                | chart_#{feedback.key}.update();
+    - }

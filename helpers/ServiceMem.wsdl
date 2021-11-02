@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ServiceMem" targetNamespace="http://www.swisspost.com/catalystSpsMem" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://www.swisspost.com/catalystSpsMem" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.swisspost.com/catalystSpsMem/Imports">
+			<xsd:import schemaLocation="ServiceMemXsd3.xsd" namespace="http://www.swisspost.com/catalystSpsMem"/>
+			<xsd:import schemaLocation="ServiceMemXsd0.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+			<xsd:import schemaLocation="ServiceMemXsd1.xsd" namespace="http://www.swisspost.com/CatSpsWs/MemService"/>
+			<xsd:import schemaLocation="ServiceMemXsd2.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="IServiceMem_GetMemberInfo_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetMemberInfo"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetMemberInfo_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetMemberInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetTransactionInfo_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetTransactionInfo"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetTransactionInfo_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetTransactionInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetDeviceInfo_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetDeviceInfo"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetDeviceInfo_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetDeviceInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_ConvertPointsToCash_InputMessage">
+		<wsdl:part name="parameters" element="tns:ConvertPointsToCash"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_ConvertPointsToCash_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ConvertPointsToCashResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetDeviceImage_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetDeviceImage"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetDeviceImage_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetDeviceImageResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateMemberProfile_InputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateMemberProfile"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateMemberProfile_OutputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateMemberProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateDeviceStatus_InputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateDeviceStatus"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateDeviceStatus_OutputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateDeviceStatusResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_Ping_InputMessage">
+		<wsdl:part name="parameters" element="tns:Ping"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_Ping_OutputMessage">
+		<wsdl:part name="parameters" element="tns:PingResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_RegisterDevice_InputMessage">
+		<wsdl:part name="parameters" element="tns:RegisterDevice"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_RegisterDevice_OutputMessage">
+		<wsdl:part name="parameters" element="tns:RegisterDeviceResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_RegisterMember_InputMessage">
+		<wsdl:part name="parameters" element="tns:RegisterMember"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_RegisterMember_OutputMessage">
+		<wsdl:part name="parameters" element="tns:RegisterMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateMember_InputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateMember"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateMember_OutputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetBillingInfo_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetBillingInfo"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetBillingInfo_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetBillingInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_CheckReliability_InputMessage">
+		<wsdl:part name="parameters" element="tns:CheckReliability"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_CheckReliability_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CheckReliabilityResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_PersonaliseTransaction_InputMessage">
+		<wsdl:part name="parameters" element="tns:PersonaliseTransaction"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_PersonaliseTransaction_OutputMessage">
+		<wsdl:part name="parameters" element="tns:PersonaliseTransactionResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_SearchMember_InputMessage">
+		<wsdl:part name="parameters" element="tns:SearchMember"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_SearchMember_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SearchMemberResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_ZipCityLookup_InputMessage">
+		<wsdl:part name="parameters" element="tns:ZipCityLookup"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_ZipCityLookup_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ZipCityLookupResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetMemberDetail_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetMemberDetail"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetMemberDetail_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetMemberDetailResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_VerifyUsernamePassword_InputMessage">
+		<wsdl:part name="parameters" element="tns:VerifyUsernamePassword"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_VerifyUsernamePassword_OutputMessage">
+		<wsdl:part name="parameters" element="tns:VerifyUsernamePasswordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_AdjustPointBalance_InputMessage">
+		<wsdl:part name="parameters" element="tns:AdjustPointBalance"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_AdjustPointBalance_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AdjustPointBalanceResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateSMProfile_InputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateSMProfile"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_UpdateSMProfile_OutputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateSMProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetMemberProductImages_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetMemberProductImages"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetMemberProductImages_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetMemberProductImagesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetSMBadgeInfo_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetSMBadgeInfo"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_GetSMBadgeInfo_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetSMBadgeInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_ResetUsernamePassword_InputMessage">
+		<wsdl:part name="parameters" element="tns:ResetUsernamePassword"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_ResetUsernamePassword_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ResetUsernamePasswordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_RedeemReward_InputMessage">
+		<wsdl:part name="parameters" element="tns:RedeemReward"/>
+	</wsdl:message>
+	<wsdl:message name="IServiceMem_RedeemReward_OutputMessage">
+		<wsdl:part name="parameters" element="tns:RedeemRewardResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="IServiceMem">
+		<wsdl:operation name="GetMemberInfo">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberInfo" message="tns:IServiceMem_GetMemberInfo_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberInfoResponse" message="tns:IServiceMem_GetMemberInfo_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetTransactionInfo">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetTransactionInfo" message="tns:IServiceMem_GetTransactionInfo_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetTransactionInfoResponse" message="tns:IServiceMem_GetTransactionInfo_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetDeviceInfo">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetDeviceInfo" message="tns:IServiceMem_GetDeviceInfo_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetDeviceInfoResponse" message="tns:IServiceMem_GetDeviceInfo_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="ConvertPointsToCash">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/ConvertPointsToCash" message="tns:IServiceMem_ConvertPointsToCash_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/ConvertPointsToCashResponse" message="tns:IServiceMem_ConvertPointsToCash_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetDeviceImage">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetDeviceImage" message="tns:IServiceMem_GetDeviceImage_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetDeviceImageResponse" message="tns:IServiceMem_GetDeviceImage_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberProfile">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateMemberProfile" message="tns:IServiceMem_UpdateMemberProfile_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateMemberProfileResponse" message="tns:IServiceMem_UpdateMemberProfile_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateDeviceStatus">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateDeviceStatus" message="tns:IServiceMem_UpdateDeviceStatus_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateDeviceStatusResponse" message="tns:IServiceMem_UpdateDeviceStatus_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="Ping">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/Ping" message="tns:IServiceMem_Ping_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/PingResponse" message="tns:IServiceMem_Ping_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterDevice">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/RegisterDevice" message="tns:IServiceMem_RegisterDevice_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/RegisterDeviceResponse" message="tns:IServiceMem_RegisterDevice_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterMember">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/RegisterMember" message="tns:IServiceMem_RegisterMember_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/RegisterMemberResponse" message="tns:IServiceMem_RegisterMember_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMember">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateMember" message="tns:IServiceMem_UpdateMember_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateMemberResponse" message="tns:IServiceMem_UpdateMember_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetBillingInfo">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetBillingInfo" message="tns:IServiceMem_GetBillingInfo_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetBillingInfoResponse" message="tns:IServiceMem_GetBillingInfo_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="CheckReliability">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/CheckReliability" message="tns:IServiceMem_CheckReliability_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/CheckReliabilityResponse" message="tns:IServiceMem_CheckReliability_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="PersonaliseTransaction">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/PersonaliseTransaction" message="tns:IServiceMem_PersonaliseTransaction_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/PersonaliseTransactionResponse" message="tns:IServiceMem_PersonaliseTransaction_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="SearchMember">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/SearchMember" message="tns:IServiceMem_SearchMember_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/SearchMemberResponse" message="tns:IServiceMem_SearchMember_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="ZipCityLookup">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/ZipCityLookup" message="tns:IServiceMem_ZipCityLookup_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/ZipCityLookupResponse" message="tns:IServiceMem_ZipCityLookup_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberDetail">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberDetail" message="tns:IServiceMem_GetMemberDetail_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberDetailResponse" message="tns:IServiceMem_GetMemberDetail_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="VerifyUsernamePassword">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/VerifyUsernamePassword" message="tns:IServiceMem_VerifyUsernamePassword_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/VerifyUsernamePasswordResponse" message="tns:IServiceMem_VerifyUsernamePassword_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="AdjustPointBalance">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/AdjustPointBalance" message="tns:IServiceMem_AdjustPointBalance_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/AdjustPointBalanceResponse" message="tns:IServiceMem_AdjustPointBalance_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSMProfile">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateSMProfile" message="tns:IServiceMem_UpdateSMProfile_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateSMProfileResponse" message="tns:IServiceMem_UpdateSMProfile_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberProductImages">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberProductImages" message="tns:IServiceMem_GetMemberProductImages_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberProductImagesResponse" message="tns:IServiceMem_GetMemberProductImages_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSMBadgeInfo">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetSMBadgeInfo" message="tns:IServiceMem_GetSMBadgeInfo_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetSMBadgeInfoResponse" message="tns:IServiceMem_GetSMBadgeInfo_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="ResetUsernamePassword">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/ResetUsernamePassword" message="tns:IServiceMem_ResetUsernamePassword_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/ResetUsernamePasswordResponse" message="tns:IServiceMem_ResetUsernamePassword_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="RedeemReward">
+			<wsdl:input wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/RedeemReward" message="tns:IServiceMem_RedeemReward_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.swisspost.com/catalystSpsMem/IServiceMem/RedeemRewardResponse" message="tns:IServiceMem_RedeemReward_OutputMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_IServiceMem" type="tns:IServiceMem">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetMemberInfo">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberInfo" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTransactionInfo">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetTransactionInfo" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetDeviceInfo">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetDeviceInfo" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ConvertPointsToCash">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/ConvertPointsToCash" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetDeviceImage">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetDeviceImage" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberProfile">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateMemberProfile" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateDeviceStatus">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateDeviceStatus" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Ping">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/Ping" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterDevice">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/RegisterDevice" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterMember">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/RegisterMember" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMember">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateMember" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetBillingInfo">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetBillingInfo" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CheckReliability">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/CheckReliability" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PersonaliseTransaction">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/PersonaliseTransaction" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SearchMember">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/SearchMember" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ZipCityLookup">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/ZipCityLookup" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberDetail">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberDetail" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="VerifyUsernamePassword">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/VerifyUsernamePassword" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AdjustPointBalance">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/AdjustPointBalance" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateSMProfile">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/UpdateSMProfile" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberProductImages">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetMemberProductImages" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSMBadgeInfo">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/GetSMBadgeInfo" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ResetUsernamePassword">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/ResetUsernamePassword" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RedeemReward">
+			<soap:operation soapAction="http://www.swisspost.com/catalystSpsMem/IServiceMem/RedeemReward" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ServiceMem">
+		<wsdl:port name="BasicHttpBinding_IServiceMem" binding="tns:BasicHttpBinding_IServiceMem">
+			<soap:address location="http://h04q5p.pext.ch:7010/Cert/BETA_CatalystMemService/ServiceMem.svc"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

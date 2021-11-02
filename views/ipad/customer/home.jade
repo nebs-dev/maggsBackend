@@ -1,0 +1,44 @@
+extends ./base
+
+block title
+    title= ('Customers')
+
+block append header_styles
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="apple-touch-icon" href="/img/icons/icon_60.png")
+    link(rel="apple-touch-icon" sizes="57x57" href="/img/icons/icon.png")
+    link(rel="apple-touch-icon" sizes="76x76" href="/img/icons/icon_76.png")
+    link(rel="apple-touch-icon" sizes="114x114" href="/img/icons/icon@2x.png")
+    link(rel="apple-touch-icon" sizes="120x120" href="/img/icons/icon_60@2x.png")
+    link(rel="apple-touch-icon" sizes="152x152" href="/img/icons/icon_76@2x.png.png")
+    link(rel="apple-touch-startup-image" href="/img/icons/icon_60.png")
+    link(rel="apple-touch-startup-image" sizes="57x57" href="/img/icons/icon.png")
+    link(rel="apple-touch-startup-image" sizes="76x76" href="/img/icons/icon_76.png")
+    link(rel="apple-touch-startup-image" sizes="114x114" href="/img/icons/icon@2x.png")
+    link(rel="apple-touch-startup-image" sizes="120x120" href="/img/icons/icon_60@2x.png")
+    link(rel="apple-touch-startup-image" sizes="152x152" href="/img/icons/icon_76@2x.png.png")
+
+block append header_scripts
+    script(src="//js.pusher.com/2.2/pusher.min.js")
+    script.    
+        // Redirect to customer coupon overview when cell phone has sent
+        // a location update notification to the backend
+        
+        var pusher = new Pusher('#{pusherAppKey}');
+        // TODO: the channel must be determined from the geographical location of the cashier iPad!
+        var channel = pusher.subscribe('store-#{process.env.server_instance}-#{store.id}-#{beacon.id}');
+        
+        // The message name has been chosen arbitrarily; it can be changed easily, however you must
+        // take care to use the same name when calling the Push.com API (routes/api/beacon.js, 
+        // route /locationUpdate). The parameter "customer_id" is mandatory and its name should not
+        // be changed.
+        channel.bind('customer@cash_register', function(data) {
+          window.location.href = '/customer/info/' + data.customer_id
+        });
+
+block container-content
+    div.logo
+        img(src="/img/home-1-icon-logo@3x.png")
+    div.welcome= __('Welcome to store %s', store.name)

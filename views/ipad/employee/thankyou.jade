@@ -1,0 +1,25 @@
+form(id="customerProfileForm" action="/employee/thankyou/#{ipadInteraction.id}/#{inputs.id}/" method="post")
+    div.row
+        div.col-md-12
+            div.form-group
+                p.tymsg-checkin= __('For checkin at: ') + dateToString(ipadInteraction.createdAt)
+                select#tymsgmodels.form-control
+                    optgroup
+                        option(value="")= __('Message models')
+                        - each model, index in models
+                            option(value="#{model.message}")= (index + 1) + '. ' + model.message
+                textarea#tymsg.form-control(name="message" required)
+                    - if (thankyou_message) {
+                        | #{thankyou_message.message}
+                    - }
+                div.cleartymsg
+        div.col-md-6
+            div.form-group
+                label= __('Delay in minutes')
+                input.form-control(type="number" name="delay" value=((thankyou_message) ? minutesDiff(thankyou_message.createdAt, thankyou_message.scheduled_date) : delay) required)
+        div.col-md-6
+            div.form-group
+                label= __('Ask for feedback')
+                input.form-control(type="checkbox" name="feedback" checked=((!thankyou_message || (thankyou_message && thankyou_message.feedback)) ? 'checked' : false ))
+        div.col-md-12
+            button#send-tymsg.btn.btn-default(type="submit")= __('Send')

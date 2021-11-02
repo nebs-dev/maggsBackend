@@ -1,0 +1,59 @@
+fixtures:
+  - model: maggs_store
+    data:
+      key: 'bern_bubenbergplatz'
+      secret: 'en_baer__en_baer__en_baer'
+      streetNr: '92'
+      postcode: '12345'
+      town: 'Bern'
+      phone: '123254534'
+      contactEmail: 'hrca@gmail.com'
+      storemanagerEmail: 'hlozancic@gmail.com'
+      lat: '12.123456'
+      long: '12.123456'
+      photo: ''
+      name: 'Bern'
+  - model: maggs_beacon
+    data:
+      uuid: 'f7826da6-4fa2-4e98-8024-bc5b71e0893e'
+      name: Near store
+      major: 1
+      minor: 0
+      store_id: 1
+  - model: maggs_beacon
+    data:
+      uuid: 'f7826da6-4fa2-4e98-8024-bc5b71e0893e'
+      name: Entrance
+      major: 1
+      minor: 1
+      store_id: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660043928293017'
+      firstname: 'Hansmartin'
+      lastname: 'Geiser'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660032004442010'
+      firstname: 'Test'
+      lastname: 'User'
+      gold_points: 362
+  - model: maggs_customer
+    data:
+      card_id: '6362660061404351018'
+      firstname: 'Roger'
+      lastname: 'Lüchinger'
+      gold_points: 31
+  - model: maggs_customer
+    data:
+      card_id: '6362660045847453010'
+      firstname: 'Claude'
+      lastname: 'Bossy'
+      gold_points: 3
+  - model: maggs_customer
+    data:
+      card_id: '6362660044572926019'
+      firstname: 'Benoît'
+      lastname: 'Pointet'
+      gold_points: 54

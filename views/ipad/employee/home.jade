@@ -1,0 +1,39 @@
+extends ./base
+block title
+    title #{__('In-Store Assistant')}
+block append header_styles
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+    link(rel="apple-touch-icon" href="/img/icons/icon_60.png")
+    link(rel="apple-touch-icon" sizes="57x57" href="/img/icons/icon.png")
+    link(rel="apple-touch-icon" sizes="76x76" href="/img/icons/icon_76.png")
+    link(rel="apple-touch-icon" sizes="114x114" href="/img/icons/icon@2x.png")
+    link(rel="apple-touch-icon" sizes="120x120" href="/img/icons/icon_60@2x.png")
+    link(rel="apple-touch-icon" sizes="152x152" href="/img/icons/icon_76@2x.png.png")
+    link(rel="apple-touch-startup-image" href="/img/icons/icon_60.png")
+    link(rel="apple-touch-startup-image" sizes="57x57" href="/img/icons/icon.png")
+    link(rel="apple-touch-startup-image" sizes="76x76" href="/img/icons/icon_76.png")
+    link(rel="apple-touch-startup-image" sizes="114x114" href="/img/icons/icon@2x.png")
+    link(rel="apple-touch-startup-image" sizes="120x120" href="/img/icons/icon_60@2x.png")
+    link(rel="apple-touch-startup-image" sizes="152x152" href="/img/icons/icon_76@2x.png.png")
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+block container-content
+    h1.home-title #{__('In-Store Assistant')}
+    - if (error && error.length > 0) {
+        div.alert.alert-danger= error
+    - }
+    div.employee-navigation
+        div.row
+            div.col-md-12
+                a.btn.big-button.btn-default(href="/employee/history")
+                    h2.button-title #{__('Recent customers')}
+                    p.button-description #{__('Description')}
+            div.col-md-12
+                a.btn.big-button.btn-default(href="/employee/coupons")
+                    h2.button-title #{__('Coupons campaigns')}
+                    p.button-description #{__('Description')}
+            div.col-md-12
+                a.btn.big-button.btn-default(href="/employee/statistics")
+                    h2.button-title #{__('Feedback results')}
+                    p.button-description #{__('Description')}

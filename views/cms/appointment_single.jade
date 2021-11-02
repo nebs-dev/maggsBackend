@@ -1,0 +1,28 @@
+extends ./base
+block title
+    title= __('Appointment edit')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/datepicker3.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-multiselect.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12
+            h1= __('Edit Appointment')
+    .row
+        .col-sm-12.col-md-4
+            div.appointments-datepicker
+        .col-sm-12.col-md-8    
+            div.form-group
+                ul.appointments-timepicker(data-store=store.id)
+                    - for (var x = 8; x <= 20; x++)
+                        li.time-container(class="time-#{x}")
+                            button.time-button(disabled=true data-time=x)= (x<10 ? '0'+x : x)+':00h'
+            div.future36hours(style="display:none")
+                p= __("Please choose time at least 36h in the future")
+block append footer_scripts
+    script(src="/js/moment.js")
+    script(src="/js/bootstrap-datepicker.js")
+    script(type="text/javascript")
+        | var datesWithHours = !{JSON.stringify(appointments)};
+    script(src="/js/appointments.js")

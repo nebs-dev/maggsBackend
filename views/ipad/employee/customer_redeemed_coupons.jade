@@ -1,0 +1,24 @@
+﻿div.row.coupons
+    if redeemed_campaigns.length > 0
+        - each redeemed_campaign, index in redeemed_campaigns
+            div.coupon.col-md-8
+                div.coupon-image
+                    div.icon
+                        img(src="#{redeemed_campaign.icon}")
+                    div.pill
+                        img(src="/img/coupon-badge@2x.png")
+                        span= redeemed_campaign.value
+                div.coupon-info
+                    div.coupon-name
+                        h3= redeemed_campaign.tagline
+                    div.coupon-date
+                        span #{__('valid until')} #{dayToString(redeemed_campaign.end_date)}
+            div.coupon.col-md-4
+                div.coupon-redeemed
+                    div
+                        span #{__('Redeemed in')} #{redeemed_campaign.store_name}
+                    div
+                        span #{__('at [timestamp]')} #{dateToString(redeemed_campaign.redeem_date)}
+    else
+        div.col-md-12
+            h3= __('No coupon found.')

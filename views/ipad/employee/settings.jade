@@ -1,0 +1,60 @@
+extends ./base
+block title
+    title= __('Settings')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+block container-content
+    a.back-button(href="/employee")
+    h1.title= __('Settings')
+
+    h3= __('Stores')
+
+    div.tab-content
+        div.row.stores
+            - if (stores.length > 0) {
+                - each store, index in stores
+                    - if (store.beacons.length) {
+                        div.coupon.col-md-12
+                            div.coupon-info
+                                div.coupon-name
+                                    h3= store.name
+                                    input.secret(type="hidden" value=store.secret)
+                                    div.col-md-3
+                                        button.saveLocalStorage.btn.btn-default(id=store.id)= __('Click')
+                                - if (store.beacons.length > 0) {
+                                    div.selectBeaconDiv.col-md-3
+                                        select.form-control(required="true" name="beaconSelect")
+                                            for beacon in store.beacons
+                                                option(value=beacon.id) #{beacon.name}
+                                - }
+
+                                div.clearfix
+                                div.coupon-date.col-md-12
+                                    span #{__('Contact email')} #{store.contactEmail}
+                    - }
+            - } else {
+                div.col-md-12
+                    h3= __('No stores found.')
+            - }
+
+block append footer_scripts
+    script(type="text/javascript")
+        |$(document).on('ready', function() {
+        |   if((localStorage.storeID && localStorage.storeSecret) && #{!store_id}) {
+        |       window.location.href = '/employee/add_store/' +  localStorage.storeID + '/' +  localStorage.beaconID + '/' + localStorage.storeSecret;
+        |   }
+        |   $('.saveLocalStorage').click(function(e){
+        |       e.preventDefault();
+        |       var storeSecret = $(this).parent().parent().find('input').val();
+        |       var storeID = $(this).attr('id');
+        |       var beaconID = $(this).parent().parent().parent().find('select').val();
+        |       localStorage.storeID = storeID;
+        |       localStorage.storeSecret = storeSecret;
+        |       localStorage.beaconID = beaconID;
+        |       window.location.href = '/employee/add_store/' +  storeID + '/' + beaconID + '/' + storeSecret;
+        |   });
+        |});
+

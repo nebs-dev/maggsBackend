@@ -1,0 +1,39 @@
+extends ./base
+block title
+    title= __('Beacons')
+block append header_styles
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Beacon information')
+            a.btn.btn-primary.pull-right(href='/cms/beacon/create')= __('New beacon')
+
+    table.table.table-striped
+        thead
+            tr
+                th= __('Beacon ID')
+                th= __('Name')
+                th= __('UUID')
+                th= __('Major')
+                th= __('Minor')
+                th= __('Created at')
+                th= __('Updated at')
+                th= __('Store')
+                th= __('Cash register')
+                th= __('Actions')
+        tbody
+            - for beacon in beacons
+                tr
+                    td= beacon.id
+                    td= beacon.name
+                    td= beacon.uuid
+                    td= beacon.major
+                    td= beacon.minor
+                    td= dateToString(beacon.createdAt, true)
+                    td= dateToString(beacon.updatedAt, true)
+                    td= beacon.store_name
+                    td= beacon.cash_register
+                    td
+                        a(href='/cms/beacon/edit/' + beacon.id class="btn btn-default btn-xs button-margin-top table-button")= __('Edit')
+                        a(href='/cms/beacon/delete/' + beacon.id class="btn btn-danger btn-xs button-margin-top table-button")= __('Delete')
+block append footer_scripts

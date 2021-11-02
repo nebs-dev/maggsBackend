@@ -1,0 +1,17 @@
+{
+  "apps" : [{
+    "name"        : "maggs-prod-backend",
+    "script"      : "app.js",
+    "watch"       : false,
+    "env": {
+      "server_instance": "prod",
+      "api_key": "AR7P3M6L0DG7EJJ58MIX3D3M0EJYW7",
+      "parseAPIKey": "dhtTPwjPQwFAi743HYLPxsRN8oEqYDIoGQv6m7RL",
+      "parseAppID": "ZEHAwh9VLcr14V5ZI3tOrNDkxmvGq7JBUhj2hAOL",
+      "pusherAppID": "117487",
+      "pusherAppKey": "657b81ff3cd7b908aa68",
+      "pusherAppSecret": "a34fe76d3be43dec3ca4",
+      "VCAP_APP_PORT": 80
+    }
+  }]
+}

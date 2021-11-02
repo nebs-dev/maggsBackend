@@ -1,0 +1,52 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url("/fonts/gotham-light-webfont.eot");
+  src: local("Ôś║"), url("/fonts/gotham-light-webfont.woff") format("woff"), url("/fonts/gotham-light-webfont.ttf") format("truetype"); }
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url("/fonts/gotham-book-webfont.eot");
+  src: local("Ôś║"), url("/fonts/gotham-book-webfont.woff") format("woff"), url("/fonts/gotham-book-webfont.ttf") format("truetype"); }
+@font-face {
+  font-family: 'icomoon';
+  src: url("/fonts/icomoon.eot");
+  src: local("Ôś║"), url("/fonts/icomoon.woff") format("woff"), url("/fonts/icomoon.ttf") format("truetype"); }
+div.tab-content {
+  margin-top: 20px; }
+  div.tab-content .coupons {
+    color: #FFFFFF;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; }
+    div.tab-content .coupons .coupons-item {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      margin-bottom: 20px; }
+      div.tab-content .coupons .coupons-item td {
+        background: #83CCE6;
+        padding: 20px; }
+        div.tab-content .coupons .coupons-item td.coupons-item-name {
+          width: 50%;
+          -webkit-border-radius: 5px 0 0 5px;
+          -moz-border-radius: 5px 0 0 5px;
+          border-radius: 5px 0 0 5px; }
+        div.tab-content .coupons .coupons-item td.coupons-item-code {
+          width: 25%;
+          text-align: center; }
+          div.tab-content .coupons .coupons-item td.coupons-item-code span.badge {
+            background: #FFFFFF;
+            color: #83CCE6;
+            font-size: 1.5em; }
+        div.tab-content .coupons .coupons-item td.coupons-item-accept {
+          -webkit-border-radius: 0 5px 5px 0;
+          -moz-border-radius: 0 5px 5px 0;
+          border-radius: 0 5px 5px 0;
+          width: 25%;
+          cursor: pointer;
+          border-left: 1px solid #FFFFFF;
+          text-align: center; }
+          div.tab-content .coupons .coupons-item td.coupons-item-accept:hover {
+            background: #68A2BC; }
+
+/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,392 @@
+fixtures:
+  - model: maggs_customer
+    data:
+      card_id: '6362660019576155088'
+      firstname: 'TEST'
+      lastname: 'TEST'
+      email: 'nebs@gmail.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660019576155021'
+      firstname: 'Laura'
+      lastname: 'Burri'
+      email: 'laura.burri@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660035631856015'
+      firstname: 'Caroline'
+      lastname: 'Corosiniti'
+      email: 'caroline.corosiniti@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660006740810011'
+      firstname: 'Claudia'
+      lastname: 'Theiler'
+      email: 'claudia.theiler@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660033493799019'
+      firstname: 'Nina'
+      lastname: 'Gaemperle'
+      email: 'nina.gaemperle@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660001257422011'
+      firstname: 'Reto'
+      lastname: 'Maurer'
+      email: 'reto.maurer@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660005678279017'
+      firstname: 'Walter'
+      lastname: 'Sammali'
+      email: 'walter.sammali@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660010630817011'
+      firstname: 'Franz'
+      lastname: 'Wittwer'
+      email: 'franz.wittwer@loeb.ch'
+      gold_points: 1
+#  - model: maggs_customer
+#    data:
+#      card_id: '6362660095768775123'
+#      firstname: 'Nicole'
+#      lastname: 'Studer'
+#      email: 'nicole.studer@loeb.ch'
+#      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660027830849016'
+      firstname: 'Patricia'
+      lastname: 'Kunz'
+      email: 'patricia.kunz@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660069199547013'
+      firstname: 'Béatrice'
+      lastname: 'Landolt'
+      email: 'beatrice.ladolt@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660082226127014'
+      firstname: 'Pascal'
+      lastname: 'Patete'
+      email: 'pascal.patete@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660004589860015'
+      firstname: 'Manfred'
+      lastname: 'Lang'
+      email: 'manfred.lang@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660011622153019'
+      firstname: 'Beatrice'
+      lastname: 'Heiz'
+      email: 'beatrice.heiz@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660067189313040'
+      firstname: 'Nicole'
+      lastname: 'Ruprecht'
+      email: 'nicole.ruprecht@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660005651902015'
+      firstname: 'Senta'
+      lastname: 'Krieg'
+      email: 'senta.krieg@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660048819325018'
+      firstname: 'Jelena'
+      lastname: 'Nikolic'
+      email: 'Jelena.Nikolic@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660020529469014'
+      firstname: 'Jeanny'
+      lastname: 'Podlucky'
+      email: 'jeanny.podlucky@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660095834511015'
+      firstname: 'Enes'
+      lastname: 'Zekovic'
+      email: 'enes.zekovic@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660008546104045'
+      firstname: 'Ronald'
+      lastname: 'Christen'
+      email: 'ronald.christen@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660097004001025'
+      firstname: 'Daniel'
+      lastname: 'Böhlen'
+      email: 'daniel.boehlen@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660086487448035'
+      firstname: 'Fabian'
+      lastname: 'Imwinkelried'
+      email: 'fabian.imwinkelried@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660054771537012'
+      firstname: 'Martin'
+      lastname: 'Galliker'
+      email: 'martin.galliker@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078515430010'
+      firstname: 'Hansueli'
+      lastname: 'Loosli'
+      email: 'hansueli.loosli@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078548703011'
+      firstname: 'Barbara'
+      lastname: 'Frei'
+      email: 'barbara.frei@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078769020012'
+      firstname: 'Michel'
+      lastname: 'Gobet'
+      email: 'michel.gobet1@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078716941013'
+      firstname: 'Catherine'
+      lastname: 'Mühlemann'
+      email: 'catherine.muehlemann@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078545128014'
+      firstname: 'Hans'
+      lastname: 'Werder'
+      email: 'hans.werder@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078477794015'
+      firstname: 'Frank'
+      lastname: 'Esser'
+      email: 'frank.esser@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078762700016'
+      firstname: 'Hugo'
+      lastname: 'Gerber'
+      email: 'hugo.gerber1@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078695644018'
+      firstname: 'Torsten'
+      lastname: 'Kreindl'
+      email: 'torsten.kreindl1@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078709198019'
+      firstname: 'Theophil'
+      lastname: 'Schlatter'
+      email: 'theophil.schlatter@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078585102010'
+      firstname: 'Martin'
+      lastname: 'Vögeli'
+      email: 'martin.voegeli@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078735618014'
+      firstname: 'Alexandra'
+      lastname: 'Reich'
+      email: 'alexandra.reich@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078558979014'
+      firstname: 'Christian'
+      lastname: 'Petit'
+      email: 'christian.petit@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660095768775123'
+      firstname: 'Nicole'
+      lastname: 'Loeb'
+      email: 'nicole.loeb@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660007418802017'
+      firstname: 'Olivia'
+      lastname: 'Steck'
+      email: 'olivia.steck@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660068419552019'
+      firstname: 'Stefan'
+      lastname: 'Ruoss'
+      email: 'stefan.ruoss@bluewin.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660082226127014'
+      firstname: 'Pascal'
+      lastname: 'Patete'
+      email: 'pascal.patete@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660099601919013'
+      firstname: 'Karin'
+      lastname: 'Beutler'
+      email: 'karin@beutler-marketing.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660048729092013'
+      firstname: 'Tom'
+      lastname: 'Christen'
+      email: 'Tom.christen@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660096384603012'
+      firstname: 'Heinz'
+      lastname: 'Baum'
+      email: 'Heinz.baum@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078772847013'
+      firstname: 'Michael'
+      lastname: 'Betschart'
+      email: 'michael.betschart@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078802674015'
+      firstname: 'Mario'
+      lastname: 'Rossi'
+      email: 'mario.rossi@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078561401014'
+      firstname: 'Urs'
+      lastname: 'Lehner'
+      email: 'urs.lehner@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078649885014'
+      firstname: 'Manuela'
+      lastname: 'Staub'
+      email: 'manuela.staub@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660078413077012'
+      firstname: 'Marcel'
+      lastname: 'Walker'
+      email: 'marcel.walker@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660058729032018'
+      firstname: 'Karin'
+      lastname: 'Mathys'
+      email: 'karin.mathys@swisscom.com'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660051803197013'
+      firstname: 'Michael'
+      lastname: 'Wehlitz'
+      email: 'michael.wehlitz@loeb.ch'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660001084295010'
+      firstname: 'Urs'
+      lastname: 'Berger'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660001239191015'
+      firstname: 'Marc'
+      lastname: 'Loeb'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660003488131015'
+      firstname: 'Paul'
+      lastname: 'Häring'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660004252987012'
+      firstname: 'Werner'
+      lastname: 'Krättli'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660005634461014'
+      firstname: 'Nicolas'
+      lastname: 'Rouge'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660018125232018'
+      firstname: 'François'
+      lastname: 'Manach'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660096384603012'
+      firstname: 'Heinz'
+      lastname: 'Baum'
+      gold_points: 1
+  - model: maggs_customer
+    data:
+      card_id: '6362660093218966012'
+      firstname: 'Gaius'
+      lastname: "d'Uscio"
+      gold_points: 1

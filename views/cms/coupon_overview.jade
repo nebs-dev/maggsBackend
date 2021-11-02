@@ -1,0 +1,188 @@
+extends ./base
+
+block title
+    title= __('Coupons campaigns')
+
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/coupon_overview.css")
+
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Coupons campaigns')
+            - if (error && error.length > 0) {
+                div.alert.alert-danger= error
+            - }
+            - if (message && message.length > 0) {
+                div.alert.alert-success= message
+            - }
+            a.btn.btn-primary.pull-right(href="/cms/create")= __('Create new campaign')
+            a.btn.statistics.pull-right(href="https://www.google.com/analytics/web/?hl=en#dashboard/AwQ37Bt1SyaKwQHOf6jXoQ/" target="_blank")= __('To the statistics')
+    ul#campaignsTab.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+            a(href="#date-campaigns" role="tab" data-toggle="tab")= __('Date-based campaigns')
+        li(role="presentation")
+            a(href="#location-campaigns" role="tab" data-toggle="tab")= __('Location-based campaigns')
+    div.tab-content
+        div.tab-pane.active(role="tabpanel" id="date-campaigns")
+            - if (date_campaigns) {
+                table#active_coupon_overview.table.table-striped.white-head
+                    thead
+                        tr
+                            th= __('Image')
+                            th= __('Value')
+                            th= __('Description')
+                            th= __('Status')
+                            th= __('Launch date')
+                            th= __('Start date')
+                            th= __('End date')
+                            th= __('Place(s)')
+                            th= __('Text')
+                            th
+                            th
+                    tbody
+                        - var has_archives = false
+                        - each campaign in date_campaigns
+                            - if (campaign.getStatus(__) != __('finished')) {
+                                tr
+                                    td
+                                        img(src="#{campaign.icon}")
+                                    td= campaign.value
+                                    td= campaign.tagline
+                                    td
+                                        span(class='label label-' + campaign.getLabel())= campaign.getStatus(__)
+                                    td= dateToString(campaign.launch_date, true)
+                                    td= dateToString(campaign.start_date, true)
+                                    td= dateToString(campaign.end_date, true)
+                                    td
+                                        - if (campaign.allStores) {
+                                            - each store in campaign.allStores
+                                                p= store.name
+                                        - }
+                                    td= campaign.description
+                                    td
+                                        a(href="/cms/edit/dateCampaign/#{campaign.id}" class="btn btn-default btn-xs table-button")= __('Edit')
+                                    td
+                                        - if (campaign.getStatus(__) == __('draft')) {
+                                            a(href="/cms/delete/dateCampaign/#{campaign.id}" class="btn btn-danger btn-xs table-button")= __('Delete')
+                                        - }
+                            - } else {
+                                - has_archives = true
+                            - }
+                - if (has_archives) {
+                    button.btn.btn-default#showArchivedCoupons= __('Show/hide archived campaigns')
+                    table#archived_coupon_overview.table.table-striped.is-hidden.white-head
+                        thead
+                            tr
+                                th= __('Image')
+                                th= __('Value')
+                                th= __('Description')
+                                th= __('Status')
+                                th= __('Launch date')
+                                th= __('Start date')
+                                th= __('End date')
+                                th= __('Place(s)')
+                                th= __('Text')
+                                th
+                        tbody
+                            - each campaign in date_campaigns
+                                - if (campaign.getStatus(__) == __('finished')) {
+                                    tr
+                                        td
+                                            img(src="#{campaign.icon}")
+                                        td= campaign.value
+                                        td= campaign.tagline
+                                        td
+                                            span(class='label label-' + campaign.getLabel())= campaign.getStatus(__)
+                                        td= dateToString(campaign.launch_date, true)
+                                        td= dateToString(campaign.start_date, true)
+                                        td= dateToString(campaign.end_date, true)
+                                        td
+                                            - if (campaign.allStores) {
+                                                - each store in campaign.allStores
+                                                    p= store.name
+                                            - }
+                                        td= campaign.description
+                                        td
+                                            a(href="/cms/edit/dateCampaign/#{campaign.id}" class="btn btn-xs btn-info")= __('Details')
+                                - }
+                - }
+            - }
+        div.tab-pane(role="tabpanel" id="location-campaigns")
+            - if (location_campaigns) {
+                table#active_geocoupon_overview.table.table-striped.white-head
+                    thead
+                        tr
+                            th= __('Image')
+                            th= __('Value')
+                            th= __('Description')
+                            th= __('Status')
+                            th= __('Beacons')
+                            th= __('Start date')
+                            th= __('End date')
+                            th= __('Text')
+                            th
+                            th
+                    tbody
+                    - has_archives = false
+                        - each campaign in location_campaigns
+                            - if (campaign.getStatus(__) != __('finished')) {
+                                tr
+                                    td
+                                        img(src="#{campaign.icon}")
+                                    td= campaign.value
+                                    td= campaign.tagline
+                                    td
+                                        span(class='label label-' + campaign.getLabel())= campaign.getStatus(__)
+                                    td= campaign.beacons
+                                    td= dateToString(campaign.start_date, true)
+                                    td= dateToString(campaign.end_date, true)
+                                    td= campaign.description
+                                    td
+                                        a(href="/cms/edit/locationCampaign/#{campaign.id}" class="btn btn-xs btn-default table-button")= __('Edit')
+                                    td
+                                        a(href="/cms/delete/locationCampaign/#{campaign.id}" class="btn btn-xs btn-danger table-button")= __('Delete')
+                            - } else {
+                                - has_archives = true
+                            - }
+                - if (has_archives) {
+                    button.btn.btn-default#showArchivedGeoCoupons= __('Show/hide archived campaigns')
+                    table#archived_geocoupon_overview.table.table-striped.is-hidden.white-head
+                        thead
+                            tr
+                                th= __('Image')
+                                th= __('Value')
+                                th= __('Description')
+                                th= __('Status')
+                                th= __('Beacons')
+                                th= __('Start date')
+                                th= __('End date')
+                                th= __('Text')
+                                th
+                        tbody
+                        - each campaign in location_campaigns
+                            - if (campaign.getStatus(__) == __('finished')) {
+                                tr
+                                    td
+                                        img(src="#{campaign.icon}")
+                                    td= campaign.value
+                                    td= campaign.tagline
+                                    td
+                                        span(class='label label-' + campaign.getLabel())= campaign.getStatus(__)
+                                    td= campaign.beacons
+                                    td= dateToString(campaign.start_date, true)
+                                    td= dateToString(campaign.end_date, true)
+                                    td= campaign.description
+                                    td
+                                        a(href="/cms/edit/locationCampaign/#{campaign.id}" class="btn btn-xs btn-info")= __('Detail')
+                            - }
+                - }
+            - }
+block append footer_scripts
+    script(type="text/javascript")
+        |$('#showArchivedCoupons').on('click', function(e) {
+        |   $('#archived_coupon_overview').toggleClass('is-hidden');
+        |});
+        |$('#showArchivedGeoCoupons').on('click', function(e) {
+        |   $('#archived_geocoupon_overview').toggleClass('is-hidden');
+        |});

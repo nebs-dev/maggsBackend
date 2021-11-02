@@ -1,0 +1,481 @@
+2015-05-27
+==========
+
+- Spiking away on Sequelize. Found out how to use the belongTo() association, and more importantly, how to "eager-load" them so that the query chains do not become too monstrous.
+
+- Learned a few interesting things:
+
+  - How to declare relations:
+  
+      UsedCoupon.belongsTo(Campaign, { foreignKey: 'campaign_id', as: 'campaign' });
+      UsedCoupon.belongsTo(Store   , { foreignKey: 'store_id'   , as: 'store'    });
+      UsedCoupon.belongsTo(Customer, { foreignKey: 'customer_id', as: 'customer' });
+      Customer.hasMany(UsedCoupon, { foreignKey: 'customer_id', as: 'used_coupons' });
+
+  - How to make nested queries (i.e. including related records):
+
+      Customer.findAll({
+          include: [
+            { model: UsedCoupon, as: 'used_coupons', include: [ { model: Campaign, as: 'campaign' } ] }
+          ]
+        })
+        .then( function(customers) {
+          console.log('-----------------------------');
+          console.log('Customer.findAll() ->');
+          _.each(customers, function(customer) {
+            var usedCoupons = customer.get('usedCoupons');
+            if (usedCoupons.length > 0) {
+              console.log('Customer:');
+              console.log('  Name:', customer.get('firstname'), customer.get('lastname') );
+              console.log('  Used coupons:');
+              _.each(usedCoupons, function(coupon, i) {
+                console.log('    ' + (i + 1).toString(), coupon.get('campaign').get('description'));
+              });
+            }
+          })
+        })
+  
+    - Note how the relation is called "used_coupons" ("as" attribute), and how that gets "camelCased" to "usedCoupons"!
+
+2015-05-26
+==========
+
+- models/index.js seems to be missing many definitions for relationships that are visible on the DB overview page (https://mobility.atlassian.net/wiki/display/MAW/Database) (e.g. "customer" hasMany "pushed geo coupon")
+
+
+2015-05-22
+==========
+
+MA-459:
+
+- Geo coupons only have a "redeemed" flag, no store ID - which makes sense.
+
+-----------
+
+- I cannot seem to use the dateToZurichTime() function from within Jade templates. Must investigate why.
+
+2015-05-21
+==========
+
+- Just found out that our version of sequelize (1.7.x) is outdated (current is 2.x), and that the new version uses a different argument syntax for the destroy() method (and maybe other methods as well).
+
+--------
+13:34
+
+I have added a new route module to the backend: /routes/api/debug.js, intended to contain routes useful for testing/debugging purposes.
+
+Because these routes present a certain potential danger in a production environment, they are only made available if the environment variable MAGGS_BACKEND_DEBUG is set to the string value "true".
+
+For now, the two routes are:
+
+/dbg_redeemed/:customer_id
+  Will list (as JSON) the coupons redeemed by the specified customer.
+  
+/dbg_unredeem_all/:customer_id
+  Will "un-redeem" all coupons of the specified customer.
+  
+-------
+14:05
+
+The Postgres databases of the Dev and Prod installations are indeed accessible via TCP ports, meaning that the command-line utility psql can be used to manipulate the database directly when that is needed (of course, that option must be used carefully, but it's ok I guess for inserting and maybe updating records - carefully...):
+
+For the Dev database, type this:
+
+ psql -h babar.elephantsql.com -U skwmtcrp -p 5432
+
+and supply the password: 
+
+  DXmLmSYbOEaQbX8HwLj8JnnH_vd459nJ
+  
+For the Prod database:
+
+ psql -h babar.elephantsql.com -U lsctnwar -p 5432
+ 
+password:
+
+  ftjXbyF4g90_wnbyHutPAFmlxsaZRcMa
+
+--------
+15:00
+
+Zu besprechen mit Roger:
+
+Wie Du weisst, erzeugt der Backend - in seiner jetzigen Form - bei jedem Aufstarten einen Grundstock an Datensätzen anhand von sogenannten "Fixture"-Dateien, die in YAML vorliegen.
+
+Auf Andreas' Auftrag habe ich jetzt einen Datensatz in der Prod-Datenbank per direkter Manipulation geändert; es handelte sich dabei um die Card-ID von Nicole Loeb in der Customer-Tabelle.
+
+Das Problem besteht nun darin, dass dieser Datensatz sowohl produktiv genutzt wird als auch Teil der Fixture-Datenmenge ist. So etwas widerspricht offenbar der Grundidee dieser Fixtures, denn bei deren Import werden *sämtliche* Felder als "unique" behandelt. Das bedeutet, dass beim Aufstarten der Applikation ein *neuer* Datensatz erzeugt wird, falls auch nur einziges Feld von der Vorgabe abweicht. 
+
+Im jetzigen Fall war das noch einfach zu vermeiden: ich habe die Card-ID einfach an beiden Orten, d.h. in der Customer-Tabelle und in den Fixtures geändert.
+
+Aber: das ist nur möglich, wenn es sich um Felder handelt, die sich nach dem Anlegen prinzipiell nicht mehr ändern. Wenn jetzt Nicole Loeb aber damit anfängt, auf Ihrer Karte Punkte zu sammeln, geht das nicht mehr - denn leider ist der Punktestand ebenfalls Teil der Fixture-Definition (Wert = 1), so dass es beim nächsten Neustart der Applikation zwei Datensätze auf den Namen "Nicole Loeb" geben würde.
+
+Was dies im Endeffekt bedeutet: wir müssen meiner Meinung nach dazu übergehen, die "Prod" Datenbank auch wirklich als solche zu behandeln, und die Fixtures komplett daraus entfernen. Bisher wurde "Prod" als "Demo" verstanden - davon müssen wir nun wegkommen.
+
+Da es aber weiterhin einen Bedarf für Demos geben wird, schlage ich aber vor, noch eine weitere Version der Applikation einzuführen, nämlich eben "Demo". In dieser Version würden weiterhin Fixtures verwendet, und die zugehörige Datenbank wäre darauf ausgelegt, regelmässig gelöscht zu werden.
+
+Somit hätten wir dann im Endeffekt:
+- Eine "Dev"-Umgebung
+- Eine "Demo"-Umgebung
+- Eine "Staging"-Umgebung
+- Eine "Prod"-Umgebung
+
+(dazu noch meine eigene, die nur auf meinem PC und eventuell im LAN zur Verfügung steht)
+
+Was haltet ihr davon?
+
+
+2015-05-20
+==========
+
+MA-459
+------
+
+I have now updated the implementation of getStore() to use the database table maggs_stores (via the global collection of Store objects). 
+
+To do this, I had to extend the data model and create a new migration step.
+
+For future reference, it is worth noting here that adding columns to an existing table can be tricky when one or more of these columns has a "unique" constraint. In fact, it appears it's impossible to add new columns with either the "unique" or "allowNull: false" constraints set from the start: the columns must be added without constraint, then filled using "update" commands (of which I do not yet know if they're supported by the migration object), then updated to add the constraint(s).
+
+Fixtures cannot help either, because they appear to identify records by *all* of the specified fields, meaning that the fixture with extended data would result in a new record being created, instead of the existing one being updated.
+
+2015-05-19
+==========
+
+MA-459
+
+- It seems there is a database table for stores. Question is, should we keep this table, or replace it with constant data (.js or .json) ?
+
+  - If we keep the table, we should probably extend it with the store "key", "secret", "welcomeText", and possibly more later on (picture)
+  
+  - Right now, because of a foreign key on the store ID, the "customer" area cannot be used with anything else that Bern, Bubenbergplatz.
+
+2015-05-18
+==========
+
+MA-440 "Wrong card number displayed on home [screen]" ->
+
+	This was a trivial change to make, however it has reminded us that the database already enforces the uniqueness of card IDs - i.e., the table "maggs_customers" cannot contain more than one record with a given card ID.
+	
+	This means that re-scanning a card that has already been scanned will result in an error, which the API reports back to the device as a simple 500 code.
+	
+	This is, IMO, desired behavior. However, it represents a problem with the current implementation of the onboarding use case, combined with the fact that, because we are in early development, the onboarding is repeated very frequently for testing purposes.
+	
+	For the time being, the client can simply ignore the reported error code. But I'm not sure whether we have defined how to handle cards being scanned a second time ? Should we define this now?
+	
+--------------
+MA-459
+
+- Preparation:
+	
+	- Model "IpadInteraction"
+		Consists of nothing else than a customer ID and a store ID. models/index.js defines a "hasOne" relationship from the table "maggs_ipad_interaction" to "maggs_thankyou_message". In OOP terms, this means that a "Thank you message" IS_A "iPad interaction".
+	
+- Route GET "/:customer_id/redeem/:campaign_id/confirm" in routes/ipad/customers/index.js handles the request that needs improving.
+
+- Link must be updated in "views/ipad/customer/coupon_list.jade"
+
+- res.cookie(...): what's the default retention time ?
+
+2015-04-28
+==========
+
+MA-398 "As a developer I would like to investigate the current implementation for unlocking geo coupons" ->
+
+    When the smartphone arrives in range of a beacon, it sends a "location update" notification to the backend, which then checks if there are any "geo" campaigns (table "maggs_geo_campaigns") for that location that have not yet been pushed to this customer (table "maggs_pushed_geo_coupons"). If so, the backend will then use Parse.com to push these notifications to the customer's device, and upon success mark the geo campaing as "pushed" to this customer by adding a new record to maggs_pushed_geo_coupons.
+    
+MA-420 "As a developer, I want to investigate push notifications about new standard Gutscheine"
+
+    Upon startup, the backend queries the "maggs_campaigns" table for campaigns that have their "launch_date" in the future. For each of those, it schedules a job (using "node-schedule") that will execute at the set launch date/time and use Parse.com to notify all registered customers.
+    
+    There is a problem/bug with this implementation: campaigns added to the database will not be taken in account until the application is restarted.
+    
+2015-04-27
+==========
+
+- Marianne hat inzwischen herausgefunden, wieso die Push-Demo nicht funktioniert hat: jedesmal, wenn die Applikation neu auf das Gerät installiert wird, wird ein neuer Schlüssel dafür erzeugt. Das bedeutet, dass auch bei Parse.com eine neue "Installation" (= Installations-Objekt) erzeugt werden muss, was wir am Freitag Morgen nocht nicht wussten.
+
+- Route /api/<api_key>/notification: woher kommt die Customer ID ?
+  - bisher einfach fix eingestellt
+  - einfach weglassen und später "pairen" ?
+  
+----
+10:07
+
+- Zum ersten Mal gepusht:
+  - Auf meiner Maschine lautet der exakte Befehl:
+    cf push maggsdev -c "node_modules/sequelize/bin/sequelize -e development -m && node app.js"
+    Unbedingt genauso einhalten, sonst startet die Applikation nicht mehr!
+
+-----
+11:00 MA431
+
+- Pusher App ID in home.jade fest einkodiert - muss verbessert werden
+
+-----
+13:07
+
+- App-Parameter (ID, key, Secret) werden jetzt sowohl für die API als auch für das Client-seitige Skript aus den Umgebungsvariablen eingelesen.
+- Push auf maggsdev war erfolgreich
+  - hatte allerdings zuerst noch vergessen, die neuen Umgebungsvariablen zu setzen; zum Glück geht das mit dem pivotal-Webinterface sehr leicht
+    -> danach allerdings muss man folgendes Kommando ausführen (behauptet jedenfalls das pivotal-Webinterface):
+        cf restage maggsdev 
+
+2015-04-24
+==========
+
+Durchlesen der Swisscom Push Services API Dokumentation
+
+- Gehe davon aus, dass im Fall von Android das "pushToken" die Android ID ist.
+- Ist die "deviceId" frei wählbar ? 
+  - falls ja: was bedeutet der Fehler "Invalid device" ?
+- Ist sie obligatorisch ?
+- Gut: Rückmeldungen beim Versenden von Messages, welche Messages überhaupt versandt wurden (leider keinen Count)
+
+-----
+11:09
+
+- Habe jetzt bei parse.js createNewInstallation() den Parameter installation_id hinzugefügt. Allerdings gehe ich davon aus, dass bei Android dieser API-Aufruf (also /api/<key>/notification) gar nicht notwendig ist, da der App-Code (in diesem Fall eine von Marianne gefundene Open-Source DLL) selbst sich bei parse.com anmeldet.
+
+-----
+13:56
+
+Marianne hat jetzt erfolgreich eine Meldung auf zwei Android Handys pushen können.
+
+- Push-Demo vor Andreas hat NICHT funktioniert. Ursache?
+
+
+2015-04-21
+==========
+
+/coupons
+
+	-> Campaign.findAll
+	
+/coupons/customer/:customer_id ->
+
+  -> findMethods.getCouponsByCustomerID
+  -> findMethods.getAllCampaignsByCustomerID
+  -> findMethods.getActiveAndFutureCampaigns
+  -> findMethods.getUnusedGeoCampaignsByCustomerID
+  -> findMethods.getRedeemedCampaignsByCustomerID
+  -> findMethods.getUsedGeoCampaignsByCustomerID
+
+2015-04-20
+==========
+
+Parse API:
+
+routes/api/beacon.js
+- /locationUpdate -> parse.pushGeoCouponToCustomer()
+- /notification -> parse.createNewInstallation() -> /1/installations POST
+- /notification/:device_token -> parse.deleteInstallation() -> /1/installations?where={"deviceToken":"<device_token>"} GET
+
+routes/ipad/employee/index.js
+- /thankyou/:ipad_interaction_id/:customer_id -> parse.pushThankYouFeedback()
+
+routes/ipad/customer/index.js
+- /:customer_id/redeem/:campaign_id/confirm -> parse.pushRedeemCoupon()
+- /:customer_id/redeem_geo/:campaign_id/confirm -> parse.pushRedeemCoupon()
+
+routes/cms.js
+- /create -> parse.pushNewCouponToAll()
+- /edit/dateCampaign/:id -> pushNewCouponToAll()
+
+---
+
+- Frage bzgl. Client: muss das SignUp[Async]() aufgerufen werden ?
+
+- Wer ruft /notification auf ? Das Gerät oder das Web-Interface ?
+
+-----------------
+MA-422
+
+- cms.js: /overview:
+  - Find all stores -> STORES
+  - Find all beacons -> BEACONS
+  - Find all active campaigns
+       + all future campaigns
+	   + all "other" campaigns
+	   + active location campaigns
+	   + past location campaigns
+	   => getrennt: date_campaigns + location_campaigns -> template cms/coupon_overview
+
+--> hätte mich um API, nicht um CMS kümmern sollen!!
+
+12:51:
+-----
+
+Noch nicht fertig, weil:
+
+- Ich muss zuerst Daten importieren. Habe bereits die normale "Campaigns" zu Fixtures konvertiert.
+- Unsicherheit: die Implementation von /api/<key>/coupons/customer/:customer_id ist relativ komplex, und überschneidet sich mit der einfacheren Form. Dies muss zuerst voll verstanden werden.
+
+2015-04-16/17
+=============
+
+- Mein lokaler Backend kann offenbar keine Emails versenden (ist halt Windows...). Weiss nicht, ob das wirklich nötig ist (wollte mich als User registrieren und kann jetzt den Account nicht validieren).
+
+- Aktuelle Frage: wie bekomme ich das Google Device Token, und wie komme ich aus dem Backend da ran ?
+
+- Frage: was ist bei Parse die "maggsCustomerId" ? ist das die Kartennummer?
+  -> Nein: es ist die von Postgres vergebene Record-ID
+
+- Frage: wieso übernimmt /api/../customer/new keinen Vornamen + Nachnamen ?
+
+- Parse.com hat für "MaggsDev" zwei "Installations". Deren "maggsCustomerId" sind 4 bzw. 218.
+  -> Bestätigt: die von Postgres vergebene autoincrement-ID wird bei Parse.com als "maggsCustomerId" eingetragen.
+  
+- Habe die Route /api/<key>/card/new wieder entfernt - dient keinem Zweck
+  - Tabelle maggs_cards ebenfalls wieder entfernt
+
+- Die Doku zu /api/../notification kann nicht stimmen - es fehlen Felder, die von parse.createNewInstallation() benötigt werden
+  - Was genau tut createNewInstallation(), und wieso wird es aus /notification aufgerufen ? 
+  - Welche Aufgabe erfüllt diese Route?
+  - WICHTIG: wann soll sie aufgerufen werden?
+
+- Frage: kann ein Kunde ohne Kartennummer eingetragen werden ? (ich würde sagen, NEIN)
+
+- Um das Pushen testen zu können:
+  - Muss Marianne die Parse-API einbauen (2 Story-Punkte?)
+  - ich die Möglichkeit haben, das neue Device auf Parse.com zu finden
+  - ich die Möglichkeit haben, einen Customer-Account mit dem Gerät zu verbinden (mit oder ohne Kartennummer)
+  - ich die Möglichkeit haben, über unsere API eine Testnachricht an das Gerät zu schicken (z.B. "Sie haben noch keine Kundenkarten auf diesem Gerät eingescannt!")
+  
+-> Offene Frage: Customer -> Gerät: nur 1:1 ?
+
+2015-04-15
+==========
+
+Morgen
+------
+
+Habe nun die Applikation direkt unter Windows zum laufen gebraucht (leider mit erheblichem Aufwand).
+
+Die beiden Datenbanken, PostgreSQL und MongoDB, laufen dabei weiter in der Linux-VM. Damit der Zugriff darauf funktioniert, müssen folgende Anpassungen in deren Konfiguration vorgenommen werden:
+
+- Postgres:
+  - Die Datei /etc/postgresql/9.1/main/pg_hba.conf (Pfad falls nötig anpassen) braucht einen Eintrag der Form:
+	host    all             all     192.168.1.0/24                  md5
+	(IP-Range natürlich anpassen)
+  - In der Datei /etc/postgresql/9.1/main/postgresql.conf muss listen_addresses angepasst werden:
+	listen_addresses = '*'
+  - Danach den Service neu starten mit:
+	service postgresql restart
+
+- MongoDB:
+  - In der Datei /etc/mongodb.conf die Zeile mit bind_ip erweitern um die nicht-lokale IP-Adresse des Servers, z.B.
+	bind_ip = 127.0.0.1,192.168.1.99
+	(entsprechend die richtige IP-Adresse einsetzen)
+  - Service neu starten
+    service mongodb restart
+
+Das Backend selbst hatte ein Problem mit dem htmlstrip-native Modul. Um das zu beheben, war folgende Zeile notwendig:
+
+npm install htmlstrip-native@latest --msvs_version=2013
+
+13:19
+-----
+
+Die erste Version vom Skript zum Erzeugen von Cards funktioniert jetzt. Interessante Erkenntnis bezüglich der dazu verwendeten Sequelize-Funktion bulkCreate(): damit diese korrekt funktioniert, muss zuvor die Methode sync() mit dem Parameter {force: false} aufgerufen werden. Wird dies nicht gemacht, versucht Sequelize das "id"-Feld mit NULL anstatt mit DEFAULT zu initialisieren.
+
+14:33
+-----
+
+Importieren von Kartennummern geht grundsätzlich (import_cards.js).
+
+Mein Launcher-Batch s.bat darf keine eigenen Ausgaben mehr machen, weil ich sonst Textdateien nicht mehr über die Standardausgabe erzeugen kann.
+
+2015-04-14
+==========
+
+Morgen :
+
+- Neue Datenbanken werden offenbar über Skripte im Verzeichnis "migrations" angelegt (es scheint, als würde der Befehl "sequelize -m" alle Skripte in diesem Verzeichnis nacheinander abarbeiten)
+ 
+  -> NEIN FALSCH! Hier steht wie's geht: http://docs.sequelizejs.com/en/latest/docs/migrations/
+  
+-----
+14:35
+
+- Das NPM-Modul "sequelize-cli" kann global installiert werden und erfüllt den gleichen Zweck wie "node_modules/sequelize/bin/sequelize", offenbar allerdings mit anders formulierten Befehlen (z.B. "db:migrate")
+
+- Migrations-Dateien müssen offenbar mit dem Befehl "sequelize db:migrate" erzeugt werden. Das nächste Mal werde ich versuchen, die Option --name zu verwenden, damit ich die Datei auf dem Windows-Rechner erzeugen kann.
+
+- Alternative: Da das sequelize-CLI offenbar doch nicht nur unter Linux läuft, könnte ich auch nochmals versuchen, den Backend direkt auf Windows laufen zu lassen.
+
+-----
+16:24
+
+MA409 (/card/new) funktioniert. Neue Fragen tauchen auf:
+- Wiese hat es die entsprechende Tabelle (maggs_cards) bisher nicht gegeben ? (musste sie erst erstellen)
+- Card IDs wurden schon durch den bisherigen Code erstellt, aber in /customer/new. Dort war es das einzige Feld, das gleich beim Create gesetzt wird (auf einen zufälligen Wert). 
+    - Das war offensichtlich ein Provisorium, das wir jetzt ersetzen müssen.
+    - Ist es ok, wenn Customer-Objekte "leer" erzeugt werden ?
+- "gold_points" ist ein Feld in "Customer". Das muss eventuell geändert werden. Wie ist das Verhältnis zwischen Kunden und ihrer/ihren Karten? 1:1 oder 1:N ?
+
+- Zusatzfrage: wollen wir vorläufig auf dem Branch "handover" bleiben, oder einen neuen anlegen ?
+
+2015-04-10
+==========
+
+Habe eine virtuelle Maschine mit NodeJS auf meinem Rechner bei TWI erstellt (Quelle: TurnKey).
+
+Die IP-Adresse ist 192.168.1.99 (DHCP, aber jetzt reserviert).
+Root-Passwort ist "superuser", mein Account ist "gygax" mit Passwort "hp" (falls das jemals jemand braucht).
+
+Ich habe auch ein SSH-Schlüsselpaar erstellt und den Public-Teil auf meinem Github-Account eingetragen; damit habe ich dann das Backend geklont.
+
+------
+
+MariaDB installiert. Root-Passwort ist "joshua".
+
+Damit der Zugriff von extern funktioniert (nicht nötig für das Backend, aber praktisch für die Administration per HeidiSQL), musste noch folgendes getan werden:
+
+- in /etc/mysql/my.cnf die Zeile mit "bind-address" auskommentieren
+- per Kommandozeilen-Client ("mysql -u root -p", dann Passwort eingeben) folgendes Kommando ausführen:
+  GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.%' IDENTIFIED BY 'joshua' WITH GRANT OPTION;
+
+------
+
+VCAP_SERVICES (funktioniert noch nicht):
+export VCAP_SERVICES='{"elephantsql":[{"credentials":{"uri":"mysql://root:joshua@localhost:3306/maggs"}}],"mongolab":[{"credentials":{"uri":"mongodb://localhost/maggs"}}]}'
+
+Der erste Aufruf von "../sequelize -m" meldet, dass sequelize einmal mit "--init" aufgerufen werden muss. Das erstellt eine Datei namens config/config.json, in der ich dann (für die Development-Version) die MariaDB-Zugriffsdaten eintragen konnte.
+
+Ich bekomme dann bei "sequelize -m" folgende Meldung:
+
+gygax@nodejs ~/MaggsBackend$ node_modules/sequelize/bin/sequelize -m
+Loaded configuration file "config/config.json".
+Using environment "development".
+Loaded configuration file "config/config.json".
+Using environment "development".
+Running migrations...
+20141007151534-unnamed-migration.js
+
+/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/Parser.js:82
+       throw err;
+             ^
+Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '[] NOT NULL, `start_date` DATETIME NOT NULL, `end_date` DATETIME NOT NULL, `laun' at line 1
+   at Query.Sequence._packetToError (/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/sequences/Sequence.js:48:14)
+   at Query.ErrorPacket (/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/sequences/Query.js:83:18)
+   at Protocol._parsePacket (/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/Protocol.js:271:23)
+   at Parser.write (/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/Parser.js:77:12)
+   at Protocol.write (/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/Protocol.js:39:16)
+   at Socket.<anonymous> (/home/gygax/MaggsBackend/node_modules/mysql/lib/Connection.js:82:28)
+   at Socket.EventEmitter.emit (events.js:95:17)
+   at Socket.<anonymous> (_stream_readable.js:746:14)
+   at Socket.EventEmitter.emit (events.js:92:17)
+   at emitReadable_ (_stream_readable.js:408:10)
+   --------------------
+   at Protocol._enqueue (/home/gygax/MaggsBackend/node_modules/mysql/lib/protocol/Protocol.js:135:48)
+   at Connection.query (/home/gygax/MaggsBackend/node_modules/mysql/lib/Connection.js:185:25)
+   at module.exports.Query.run (/home/gygax/MaggsBackend/node_modules/sequelize/lib/dialects/mysql/query.js:26:17)
+   at Function.<anonymous> (/home/gygax/MaggsBackend/node_modules/sequelize/lib/dialects/mysql/connector-manager.js:410:23)
+   at null.<anonymous> (/home/gygax/MaggsBackend/node_modules/sequelize/lib/emitters/custom-event-emitter.js:105:15)
+   at EventEmitter.emit (events.js:95:17)
+   at module.exports.CustomEventEmitter.emit (/home/gygax/MaggsBackend/node_modules/sequelize/lib/emitters/custom-event-emitter.js:61:33)
+   at /home/gygax/MaggsBackend/node_modules/sequelize/lib/dialects/mysql/connector-manager.js:245:19
+   at dispense (/home/gygax/MaggsBackend/node_modules/sequelize/node_modules/generic-pool/lib/generic-pool.js:247:16)
+   at Object.me.acquire (/home/gygax/MaggsBackend/node_modules/sequelize/node_modules/generic-pool/lib/generic-pool.js:316:5)
+ 

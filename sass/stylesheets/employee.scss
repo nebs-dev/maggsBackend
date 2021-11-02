@@ -1,0 +1,369 @@
+@import "mixins";
+@import "variables";
+
+body, p {
+  font-size: 18px;
+}
+
+.ipad-logo {
+  position: absolute;
+  top: 27px;
+  right: 45px;
+  z-index: 1;
+}
+
+h1 {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $silver;
+}
+
+.home-title {
+  margin-bottom: 0;
+}
+
+.main-title {
+  border-bottom: 1px solid $silver;
+  margin: 0;
+
+  >h1 {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.big-button {
+  width: 100%;
+  min-height: 100px;
+  max-width: 100%;
+  padding: 20px 60px 20px 20px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $silver;
+  color: $white;
+  margin: 0;
+
+  &:hover, &:focus {
+    background: none;
+    border: none;
+    border-bottom: 1px solid $silver;
+    color: $white;
+  }
+}
+
+.big-button .button-title {
+  float: left;
+  width: 30%;
+  text-align: left;
+  margin: 0;
+  line-height: 30px;
+  font-size: 26px;
+}
+
+.big-button .button-description {
+  float: right;
+  text-align: center;
+  width: 70%;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.big-button:after {
+  font-family: 'icomoon';
+  content: '\e89b';
+  position: absolute;
+  right: 20px;
+  font-size: 50px;
+  line-height: 60px;
+}
+
+.interactions-header {
+  border-bottom: 1px solid;
+}
+
+h3.interactions-header-day {
+  border: 1px solid white;
+  padding: 10px;
+  margin: 0 0 -1px 0;
+  width: 200px;
+}
+
+.interactions-list {
+  margin-bottom: 40px;
+}
+
+.button-customer {
+  width: 100%;
+  height: 70px;
+  max-width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $silver;
+  color: $white;
+  margin-bottom: 0;
+  padding: 2px;
+
+  &:hover, &:focus {
+    background: none;
+    border: none;
+    border-bottom: 1px solid $silver;
+    color: $white;
+  }
+}
+
+.button-customer:after {
+  font-family: 'icomoon';
+  content: '\e89b';
+  position: absolute;
+  right: 45px;
+  font-size: 25px;
+  line-height: 55px;
+}
+
+.button-customer-time {
+  width: 70px;
+  margin: 0;
+  position: absolute;
+  line-height: 55px;
+}
+
+.button-customer-name {
+  float: left;
+  padding: 0 0 0 90px;
+  line-height: 55px;
+  margin: 0;
+}
+
+.button-customer-code {
+  float: left;
+  padding-left: 10px;
+  line-height: 40px;
+}
+
+.button-customer-status {
+  float: right;
+  text-align: right;
+  padding-right: 40px;
+  font-size: 18px;
+}
+
+.button-customer-status-hints,
+.button-customer-status-tymsg {
+  &:after {
+    font-family: 'icomoon';
+    content: '\e83b';
+    position: relative;
+    margin-left: 5px;
+    top: 2px;
+    padding-top: 5px;
+  }
+  &.sent:after {
+    content: '\e83a';
+  }
+}
+
+.customer-name {
+  font-size: 30px;
+}
+
+.customer-card {
+  font-size: 24px;
+  color: $silver;
+  text-align: right;
+  padding-right: 110px;
+}
+
+#tymsgmodels {
+  margin-bottom: 10px;
+  background-color: $alto;
+}
+
+.cleartymsg {
+  position: absolute;
+  right: 10px;
+  top: 85px;
+  height: 40px;
+  width: 40px;
+
+  &:after {
+    font-family: 'icomoon';
+    color: $silver-chalice;
+    content: '\e83b';
+    font-size: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+#hints {
+  font-size: 18px;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.tymsg-checkin {
+  margin-top: 10px;
+}
+
+#tymsg {
+  font-size: 18px;
+  height: 100px;
+  padding-right: 35px;
+
+  &[disabled="disabled"] {
+    color: $silver-chalice;
+  }
+}
+
+.nav.nav-tabs li {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+#save-hints,
+#send-tymsg {
+  float: right;
+  font-size: 20px;
+  margin: 0;
+
+  &[disabled="disabled"] {
+    color: $silver-chalice;
+  }
+}
+
+input[name="delay"] {
+  font-size: 18px;
+  line-height: 18px;
+
+  &[disabled="disabled"] {
+    color: $silver-chalice;
+  }
+}
+
+.form-group input,
+.form-group textarea,
+#customer-tymsg .form-group textarea,
+#customer-tymsg .form-group input {
+  border-radius: 0;
+  box-shadow: none;
+  background: $alto;
+}
+
+input[type="checkbox"] {
+  width: 0;
+
+  &:before {
+    font-family: 'icomoon';
+    content: '\e871';
+    font-size: 60px;
+    position: relative;
+    top: -16px;
+    left: -13px;
+    color: $alto;
+  }
+  &:checked {
+
+    &:disabled {
+
+      &:after {
+        color: $silver-chalice;
+      }
+
+    }
+
+    &:after {
+      font-family: 'icomoon';
+      content: '\e83a';
+      font-size: 40px;
+      color: $black;
+      position: relative;
+      top: -25px;
+      left: -63px;
+    }
+  }
+}
+
+.statistics table {
+  td, th {
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  th {
+    padding-bottom: 5px;
+  }
+}
+
+.statistics {
+  margin-bottom: 100px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.max {
+  font-family: $Gotham-Book;
+  background: $silver;
+  color: $mine-shaft;
+  background-clip: content-box;
+  font-weight: bold;
+}
+
+.statistics canvas {
+  width: 100% !important;
+  height: 150px !important;
+}
+
+.feedback-title {
+  margin-top: 20px;
+}
+
+.message {
+  position: relative;
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid $silver;
+  box-sizing: border-box;
+}
+
+.message-evaluation-3 {
+  color: $tumbleweed;
+}
+.message-evaluation-2 {
+  color: $calico;
+}
+.message-evaluation-1 {
+  color: $yellow-green;
+}
+.message-evaluation-0 {
+  color: $yellow-greener;
+}
+
+.message-quote {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.message-quote-content {
+  font-size: 32px;
+  max-height: 130px;
+  overflow-y: auto;
+  line-height: 1.2em;
+}
+
+.message-quote-signature {
+  margin-top: 10px;
+}
+
+.back-button {
+  &:before {
+    font-family: 'icomoon';
+    color: #CCCCCC;
+    content: '\e898';
+    position: absolute;
+    top: 4px;
+    left: -5px;
+    font-size: 50px;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,43 @@
+extends ./layout.jade
+block title
+    title Article Title
+block content
+    div.container
+        div.col-sm-6.col-sm-offset-3
+            h1 Signup
+                span.fa.fa-sign-in
+            if message.length > 0
+                div.alert.alert-danger= message
+            form(action="/signup" method="post" id="signup")
+                div.form-group
+                    label Email
+                    input.form-control(type="email" name="email" id="email")
+                div.form-group
+                    label Password
+                    input.form-control(type="password" name="password" id="password")
+                div.form-group
+                    label Confirm password
+                    input.form-control(type="password" name="confirmpassword" id="confirmpassword")
+                button.btn.btn-warning.btn-large(type="submit") Signup
+            p Already have an account? <a href="/login">Login</a>
+            p Or go <a href="/">home</a>.
+
+block append footer_scripts
+    script(src="/js/jquery.validate.js")
+    script
+        |$.validator.setDefaults({
+        |   debug: true,
+        |   success: "valid"
+        |});
+        |$('#signup').validate({
+        |   submitHandler: function(form) {
+        |       form.submit();
+        |   },
+        |   rules: {
+        |       email: "required",
+        |       password: "required",
+        |       confirmpassword: {
+        |          equalTo: "#password"
+        |       }
+        |   }
+        |});

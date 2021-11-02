@@ -1,0 +1,68 @@
+extends ./base
+
+block title
+    title= __('Campaign')
+
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/coupon_preview.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+block container-content
+    h1= __('Campaign information')
+    form(role="form")
+        div.form-group
+            label(for="campaignIcon")= __('Icon')
+            br
+            img(src="#{campaign.icon}")
+        div.row
+            div.col-md-4
+                div.form-group
+                    label(for="campaignLaunchDate")= __('Launch date')
+                    input#campaignLaunchDate.form-control.datepicker(disabled data-format="dd/MM/yyyy hh:mm" type="text" name="launchDate" value=((campaign.launch_date) ? dateToString(campaign.launch_date, true) : ''))
+            div.col-md-4
+                div.form-group
+                    label(for="campaignStartDate")= __('Start date')
+                    input#campaignStartDate.form-control.datepicker(disabled data-format="dd/MM/yyyy hh:mm" type="text" name="startDate" value=((campaign.start_date) ? dateToString(campaign.start_date, true) : ''))
+            div.col-md-4
+                div.form-group
+                    label(for="campaignEndDate")= __('End date')
+                    input#campaignEndDate.form-control.datepicker(disabled data-format="dd/MM/yyyy hh:mm" type="text" name="endDate" value=((campaign.end_date) ? dateToString(campaign.end_date, true) : ''))
+        div.form-group
+            label(for="campaignValue")= __('Value')
+            input#campaignValue.form-control(disabled type="text" name="value" value=((campaign.value) ? '#{campaign.value}' : ''))
+        div.form-group
+            label(for="campaignTagline")= __('Tagline')
+            input#campaignTagline.form-control(disabled type="text" name="tagline" value=((campaign.tagline) ? '#{campaign.tagline}' : ''))
+        div.form-group
+            h5= __('Place(s)')
+            - for (var i = 0; i < stores.length; i++) {
+                div.checkbox
+                    label
+                        input#campaignPlace(disabled type="checkbox" name="store#{stores[i]}" checked=(stores[i] == 'Bern' ? 'checked' : false))
+                        | #{stores[i]}
+            - }
+        div.form-group
+            label(for="campaignDescription")= __('Text')
+            textarea#campaignDescription.form-control(disabled rows="3" name="description")
+                - if (campaign && campaign.description) {
+                    | #{campaign.description}
+                - }
+    include ./coupon_preview
+
+block append footer_scripts
+    script(type="text/javascript")
+        |$('img.coupon-detail-preview-image-uploaded').prop('src', '#{campaign.icon}');
+        | $('.coupon-list-preview-image>img').prop('src', '#{campaign.icon}');
+        |$('.preview-tagline').text($('#campaignTagline').val());
+        |$('.preview-pill').text($('#campaignValue').val());
+        |$('.preview-description').text('Details: ' + $('#campaignDescription').val());
+        |   $('#campaignTagline').on('keyup change', function (e) {
+        |       console.log('keyup change');
+        |       $('.preview-tagline').text($('#campaignTagline').val());
+        |   });
+        |   $('#campaignValue').on('keyup change', function (e) {
+        |       $('.preview-pill').text($('#campaignValue').val());
+        |   });
+        |   $('#campaignDescription').on('keyup change', function(e) {
+        |       $('.preview-description').text('Details: ' + $('#campaignDescription').val());
+        |   });

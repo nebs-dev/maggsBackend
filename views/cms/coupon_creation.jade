@@ -1,0 +1,207 @@
+extends ./base
+
+block title
+    title= __('New campaign')
+
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/coupon_preview.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-multiselect.css")
+
+block container-content
+    h1= __('Create new campaign')
+    - if (errors && errors.unknown) {
+        div.alert.alert-danger= errors.unknown
+    - }
+    div.col-md-6
+        form(id="createCampaign" role="form" action="/cms/create" method="post")
+            div.row
+                div.col-md-12
+                    div.form-group
+                        label= __('Type of coupon')
+                        - if (errors && errors.campaignType) {
+                            span.error #{errors.campaignType.msg}
+                        - }
+                        br
+                        label.radio-inline(for="campaignTypeDate")
+                            input#campaignTypeDate.campaignType(type="radio" name="campaignType" value="date" checked=((inputs && inputs.campaignType && inputs.campaignType == 'date') ? 'checked' : false))
+                            |#{__('Date')}
+                        label.radio-inline(for="campaignTypeLocation")
+                            input#campaignTypeLocation.campaignType(type="radio" name="campaignType" value="location" checked=((inputs && inputs.campaignType && inputs.campaignType == 'location') ? 'checked' : false))
+                            |#{__('Location-based')}
+            div(class=((inputs && inputs.campaignType) ? '' : 'formHidden'))
+                div.form-group
+                    //label(for="campaignIcon")= __('Icon')
+                    - if (errors && errors.icon) {
+                    span.error #{errors.icon.msg}
+                    - }
+                    //input#campaignIcon(required="true" type="file" name="icon")
+
+                    div.form-group.cropper-form(style="width: 300px")
+                        label(for="campaignIcon")= __('Icon')
+                        input.form-control.cropperFile#campaignIcon(required="true" type="file")
+                        input(class="control cropperValue" type="hidden" name="icon")
+                        p.help-block= __('The content illustration (square picture, optimal size: 1080px X 1080px).')
+                        div.cropper-container
+                            img(data-preview=".coupon-detail-preview-image > img" data-width="1080" data-height="1080" src="" class="cropper")
+
+                    div.form-group.cropper-form(style="width: 300px")
+                        label(for="campaignIconWide")= __('Wide image')
+                        input.form-control.cropperFile#campaignIconWide(required="true" type="file")
+                        input(class="control cropperValue" type="hidden" name="icon_wide")
+                        p.help-block= __('The content illustration (rectangle picture, optimal size: 670px X 270px).')
+                        div.cropper-container
+                            img(data-preview=".coupon-list-preview-image > img" data-width="670" data-height="270" src="" class="cropper")
+
+                div.row
+                    div#dateCampaign(class=((inputs && inputs.campaignType && inputs.campaignType == 'date') ? 'col-md-12' : 'col-md-12 hidden'))
+                        div.form-group
+                            label(for="campaignLaunchDate")= __('Launch date')
+                            - if (errors && errors.launchDate) {
+                                span.error #{errors.launchDate.msg}
+                            - }
+                            input#campaignLaunchDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="launchDate" value=((inputs && inputs.launchDate) ? '#{inputs.launchDate}' : ''))
+                            p.help-block= __('The date when the coupon will be seen in the App.')
+                    div#locationCampaign(class=((inputs && inputs.campaignType && inputs.campaignType == 'location') ? 'col-md-12' : 'col-md-12 hidden'))
+                        div.form-group
+                            label(for="campaignLocation")= __('Locations')
+                            - if (errors && errors.campaignLocation) {
+                                span.error #{errors.campaignLocation.msg}
+                            - }
+                            select#campaignLocation.form-control(required="true" multiple="multiple" name="campaignLocation")
+                                - for store in stores
+                                    optgroup(label="#{store.name}")
+                                        - if (store.dataValues.beacons)
+                                            - for beacon in store.dataValues.beacons
+                                                option(value="#{beacon.id}" selected=((inputs && inputs.campaignLocation && inputs.campaignLocation.indexOf(beacon.id.toString()) != -1) ? 'selected' : false))= __(beacon.name)
+                            p.help-block= __('Store(s)/Zone(s) where the coupon is offered automatically.')
+                div.form-group
+                    label(for="campaignStartDate")= __('Start date')
+                    - if (errors && errors.startDate) {
+                        span.error #{errors.startDate.msg}
+                    - }
+                    span.error.hidden.startDateLaunch= __('must be later than %s.', __('Launch date'))
+                    input#campaignStartDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="startDate" value=((inputs && inputs.startDate) ? '#{inputs.startDate}' : ''))
+                    p.help-block= __('The date when people can start using the coupon.')
+
+                div.form-group
+                    label(for="campaignEndDate")= __('End date')
+                    - if (errors && errors.endDate) {
+                        span.error #{errors.endDate.msg}
+                    - }
+                    span.error.hidden.endDateStart= __('must be later than %s.', __('Start date'))
+                    span.error.hidden.endDateLaunch= __('must be later than %s.', __('Launch date'))
+                    input#campaignEndDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="endDate" value=((inputs && inputs.endDate) ? '#{inputs.endDate}' : ''))
+                    p.help-block= __('The date until when people can use the coupon (included).')
+                div.form-group
+                    label(for="campaignValue")= __('Value')
+                    - if (errors && errors.value) {
+                        span.error #{errors.value.msg}
+                    - }
+                    input#campaignValue.form-control(required="true" maxlength=6 type="text" name="value" value=((inputs && inputs.value) ? '#{inputs.value}' : ''))
+                    p.help-block= __('The value (20CHF, 15%, 3 / 2, ...).')
+                div.form-group
+                    label(for="campaignTagline")= __('Tagline')
+                    - if (errors && errors.tagline) {
+                        span.error #{errors.tagline.msg}
+                    - }
+                    input#campaignTagline.form-control(required="true" type="text" name="tagline" maxlength=30 value=((inputs && inputs.tagline) ? '#{inputs.tagline}' : ''))
+                    p.help-block= __('Value and title of the coupon (e.g. 20% off jeans).')
+                div#campaignPlaces(class=((inputs && inputs.campaignType && inputs.campaignType == 'date') ? 'form-group' : 'form-group hidden'))
+                    h5= __('Place(s)')
+                        - if (errors && errors['stores[]']) {
+                            span.error #{errors['stores[]'].msg}
+                        - }
+                    - for store in stores
+                        div.checkbox
+                            label
+                                input#campaignStore(required="true" type="checkbox" name="store[]" checked=((store.name == 'Bern') ? 'checked' : false) value=store.id)
+                                | #{store.name}
+
+                        //div.checkbox
+                        //    label
+                        //        input.campaignStore(type="checkbox" name="store[]" value=store.id checked=((store.name == 'Bern') ? 'checked' : false))
+                        //        |#{store.name}
+                    p.help-block= __('The store(s) where the coupon is valid.')
+                div.form-group
+                    label(for="campaignDescription")= __('Text')
+                    - if (errors && errors.description) {
+                        span.error #{errors.description.msg}
+                    - }
+                    textarea#campaignDescription.form-control(required="true" rows="3" name="description")
+                        - if (inputs && inputs.description) {
+                            |#{inputs.description}
+                        - }
+                    p.help-block= __('Description and details of the coupon.')
+                input#saveCampaign.btn.btn-primary(type="submit" value=__('Save'))
+    div.col-md-6
+        include ./coupon_preview
+
+block append footer_scripts
+    script(src="/js/moment.js")
+    script(src="/js/bootstrap-datetimepicker.js")
+    script(src="/js/bootstrap-multiselect.js")
+    script(type="text/javascript")
+        |$(document).on('ready', function() {
+        |   $('.datepicker').datetimepicker({
+        |       format: 'DD.MM.YYYY HH:mm'
+        |   });
+        |   $('#campaignLocation').multiselect({
+        |       enableClickableOptGroups: true,
+        |       includeSelectAllOption: true,
+        |       enableFiltering: false,
+        |       enableCaseInsensitiveFiltering: false,
+        |       nonSelectedText: '#{__('None selected')}',
+        |       allSelectedText: '#{__('allSelectedText')}',
+        |       selectAllText: '#{__('selectAllText')}',
+        |       filterPlaceholder: '#{__('filterPlaceholder')}'
+        |   });
+        |   $('.campaignStore').on('click', function (e) {
+        |       e.preventDefault();
+        |   });
+        |   $('.campaignType').on('change', function(e) {
+        |       $('.formHidden').removeClass('formHidden');
+        |       if ($('#campaignTypeLocation').is(':checked')) {
+        |           $('#locationCampaign').removeClass('hidden').find('input, select').prop('required', true);
+        |           $('#dateCampaign').addClass('hidden').find('input, select').prop('required', false);
+        |           $('#campaignPlaces').addClass('hidden').find('input, select').prop('required', false);
+        |       } else {
+        |           $('#locationCampaign').addClass('hidden').find('input, select').prop('required', false);
+        |           $('#dateCampaign').removeClass('hidden').find('input, select').prop('required', true);
+        |           $('#campaignPlaces').removeClass('hidden').find('input, select').prop('required', true);
+        |       }
+        |   });
+        |   $('#campaignTagline').on('keyup change', function (e) {
+        |       console.log('keyup change');
+        |       $('.preview-tagline').text($('#campaignTagline').val());
+        |   });
+        |   $('#campaignValue').on('keyup change', function (e) {
+        |       $('.preview-pill').text($('#campaignValue').val());
+        |   });
+        |   $('#campaignDescription').on('keyup change', function(e) {
+        |       $('.preview-description').text('Details: ' + $('#campaignDescription').val());
+        |   });
+        |   $("#createCampaign").on('submit', function (e) {
+        |       if ($('#campaignEndDate').val() < $('#campaignStartDate').val()) {
+        |           e.preventDefault();
+        |           $('.error.endDateStart').removeClass('hidden');
+        |           $('.error.startDateLaunch').addClass('hidden');
+        |           $('.error.endDateLaunch').addClass('hidden');
+        |       } else {
+        |           $('.error.endDateStart').addClass('hidden');
+        |           if ($('#campaignEndDate').val() < $('#campaignLaunchDate').val()) {
+        |               e.preventDefault();
+        |               $('.error.endDateLaunch').removeClass('hidden');
+        |           } else {
+        |               $('.error.endDateLaunch').addClass('hidden');
+        |           }
+        |           if ($('#campaignStartDate').val() < $('#campaignLaunchDate').val()) {
+        |               e.preventDefault();
+        |               $('.error.startDateLaunch').removeClass('hidden');
+        |           } else {
+        |               $('.error.startDateLaunch').addClass('hidden');
+        |           }
+        |       }
+        |   });
+        |});

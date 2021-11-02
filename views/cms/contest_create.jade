@@ -1,0 +1,58 @@
+extends ./base
+block title
+    title= __('Contest create')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/coupon_preview.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+
+block container-content
+    .row
+        .col-sm-12.col-md-12
+            h1= __('Create contest')
+        .col-sm-12.col-md-6
+            form(role="form",action="",method="POST")
+                div.form-group
+                    label(for="hashtag")= __('Hashtag')
+                    div.input-group
+                        div.input-group-addon #
+                        input.form-control#hashtag(required="true" maxlength="30" type="text" name="hashtag" placeholder="#{__('Hashtag')}")
+
+                div.form-group.cropper-form(style="width: 300px")
+                    label(for="contestIcon")= __('Icon')
+                    input.form-control.cropperFile#contestIcon(required="true" type="file")
+                    input(class="control cropperValue" type="hidden" name="icon")
+                    p.help-block= __('The content illustration (rectangle picture, optimal size: 670px X 270px).')
+                    div.cropper-container
+                        img(data-preview=".contest-preview img" data-width="670" data-height="270" src="" class="cropper")
+
+                div.form-group
+                    label(for="description")= __('Description')
+                    textarea.form-control#description(required="true" type="text" name="description")
+                div.row
+                    div.col-md-6
+                        div.form-group
+                            label(for="contestStartDate")= __('Start date')
+                            input#contestStartDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="startDate")
+                    div.col-md-6
+                        div.form-group
+                            label(for="contestEndDate")= __('End date')
+                            input#contestEndDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="endDate")
+                input.btn.btn-success.pull-right(type='submit',value=__('Save contest'))
+        .col-sm-12.col-md-6
+            div.contest-preview
+                div.img-holder
+                    img
+                p # ___ (1337)
+block append footer_scripts
+    script(src="/js/moment.js")
+    script(src="/js/bootstrap-datetimepicker.js")
+    script(type="text/javascript")
+        |$(document).on('ready', function() {
+        |   $('.datepicker').datetimepicker({
+        |       format: 'DD.MM.YYYY HH:mm'
+        |   });
+        |   $('#hashtag').keyup(function() {
+        |       $('.contest-preview p').text('#' + $(this).val() + ' (1337)');
+        |   });
+        |});

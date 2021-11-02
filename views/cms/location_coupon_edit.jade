@@ -1,0 +1,137 @@
+extends ./base
+
+block title
+    title= __('Edit campaign')
+
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/coupon_preview.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-multiselect.css")
+block container-content
+    h1= __('Edit campaign')
+    - if (errors && errors.unknown) {
+        div.alert.alert-danger= errors.unknown
+    - }
+    div.col-md-6
+        form(id="updateCampaign" role="form" action="/cms/edit/locationCampaign/#{campaign.id}" method="post")
+            //div.form-group
+            //    label(for="campaignIcon")= __('Icon')
+            //    br
+            //    img(src="#{campaign.icon}")
+            //    input#campaignIcon(type="file" name="icon")
+
+            div.form-group.cropper-form(style="width: 300px")
+                label(for="campaignIcon")= __('Icon')
+                input.form-control.cropperFile#campaignIcon(type="file")
+                input(class="control cropperValue" type="hidden" name="icon")
+                p.help-block= __('The content illustration (square picture, optimal size: 1080px X 1080px).')
+                div.cropper-container
+                    img(data-preview=".coupon-detail-preview-image > img" data-width="1080" data-height="1080" src="#{campaign.icon}" class="cropper")
+
+            div.form-group.cropper-form(style="width: 300px")
+                label(for="campaignIcon")= __('Icon')
+                input.form-control.cropperFile#campaignIcon(type="file")
+                input(class="control cropperValue" type="hidden" name="icon_wide")
+                p.help-block= __('The content illustration (rectangle picture, optimal size: 670px X 270px).')
+                div.cropper-container
+                    img(data-preview=".coupon-list-preview-image img" data-width="670" data-height="270" src="#{campaign.icon_wide}" class="cropper")
+
+            div.row
+                div.col-md-4
+                    div.form-group
+                        label(for="campaignLocation")= __('Locations')
+                        - if (errors && errors.campaignLocation) {
+                            span.error #{errors.campaignLocation.msg}
+                        - }
+                        select#campaignLocation.form-control(required="true" multiple="multiple" name="campaignLocation")
+                            - for store in stores
+                                optgroup(label="#{store.name}")
+                                    - for beacon in store.dataValues.beacons
+                                        - if (inputs) {
+                                            span bla
+                                            - if (inputs.campaignLocation && inputs.campaignLocation.indexOf('' + beacon.id) != -1) {
+                                                option(value="#{beacon.id}" selected="selected")= beacon.name
+                                            - } else {
+                                                option(value="#{beacon.id}")= beacon.name
+                                            - }
+                                        - } else {
+                                            option(value="#{beacon.id}" selected=((campaign.beacon_ids.indexOf(beacon.id) != -1) ? 'selected' : false))= __(beacon.name)
+                                        - }
+                div.col-md-4
+                    div.form-group
+                        label(for="campaignStartDate")= __('Start date')
+                        - if (errors && errors.startDate) {
+                            span.error #{errors.startDate.msg}
+                        - }
+                        input#campaignStartDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="startDate" value=((inputs && inputs.startDate) ? inputs.startDate : dateToString(campaign.start_date, true)))
+                div.col-md-4
+                    div.form-group
+                        label(for="campaignEndDate")= __('End date')
+                        - if (errors && errors.endDate) {
+                            span.error #{errors.endDate.msg}
+                        - }
+                        input#campaignEndDate.form-control.datepicker(required="true" data-format="dd/MM/yyyy hh:mm" type="text" name="endDate" value=((inputs && inputs.endDate) ? inputs.endDate : dateToString(campaign.end_date, true)))
+            div.form-group
+                label(for="campaignValue")= __('Value')
+                - if (errors && errors.value) {
+                    span.error #{errors.value.msg}
+                - }
+                input#campaignValue.form-control(required="true" type="text" maxlength=6 name="value" value=((inputs && inputs.value) ? inputs.value : campaign.value))
+            div.form-group
+                label(for="campaignTagline")= __('Tagline')
+                - if (errors && errors.tagline) {
+                    span.error #{errors.tagline.msg}
+                - }
+                input#campaignTagline.form-control(required="true" type="text" name="tagline" value=((inputs && inputs.tagline) ? inputs.tagline : campaign.tagline))
+            div.form-group
+                label(for="campaignDescription")= __('Text')
+                - if (errors && errors.description) {
+                    span.error #{errors.description.msg}
+                - }
+                textarea#campaignDescription.form-control(required="true" rows="3" name="description")
+                    - if (inputs && inputs.description) {
+                        | #{inputs.description}
+                    - } else {
+                        | #{campaign.description}
+                    - }
+            button#saveCampaign.btn.btn-primary= __('Update')
+    div.col-md-6
+        include ./coupon_preview
+
+block append footer_scripts
+    script(src="/js/moment.js")
+    script(src="/js/bootstrap-datetimepicker.js")
+    script(src="/js/bootstrap-multiselect.js")
+    script(type="text/javascript")
+        |$(function() {
+        |   $('.datepicker').datetimepicker({
+        |       format: 'DD.MM.YYYY HH:mm'
+        |   });
+        |});
+        |if ($('#campaignLocation')) {
+        |   $('#campaignLocation').multiselect({
+        |       enableClickableOptGroups: true,
+        |       includeSelectAllOption: true,
+        |       enableFiltering: true,
+        |       nonSelectedText: '#{__('None selected')}',
+        |       allSelectedText: '#{__('allSelectedText')}',
+        |       selectAllText: '#{__('selectAllText')}',
+        |       filterPlaceholder: '#{__('filterPlaceholder')}'
+        |   });
+        |}
+        | $('img.coupon-detail-preview-image-uploaded').prop('src', '#{campaign.icon}');
+        | $('.coupon-list-preview-image>img').prop('src', '#{campaign.icon_wide}');
+        |$('.preview-tagline').text($('#campaignTagline').val());
+        |$('.preview-pill').text($('#campaignValue').val());
+        |$('.preview-description').text('Details: ' + $('#campaignDescription').val());
+        |   $('#campaignTagline').on('keyup change', function (e) {
+        |       console.log('keyup change');
+        |       $('.preview-tagline').text($('#campaignTagline').val());
+        |   });
+        |   $('#campaignValue').on('keyup change', function (e) {
+        |       $('.preview-pill').text($('#campaignValue').val());
+        |   });
+        |   $('#campaignDescription').on('keyup change', function(e) {
+        |       $('.preview-description').text('Details: ' + $('#campaignDescription').val());
+        |   });

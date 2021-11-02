@@ -1,0 +1,33 @@
+#fixtures:
+#  - model: maggs_contest_level
+#    data:
+#      level: 1
+#      title: 'rookie'
+#      required: 0
+#      points: 1
+#      male: '/img/uploads/male.png'
+#      female: '/img/uploads/female.png'
+#  - model: maggs_contest_level
+#    data:
+#      level: 2
+#      title: 'not rookie'
+#      required: 50
+#      points: 2
+#      male: '/img/uploads/male.png'
+#      female: '/img/uploads/female.png'
+#  - model: maggs_contest_level
+#    data:
+#      level: 3
+#      title: 'guru'
+#      required: 100
+#      points: 5
+#      male: '/img/uploads/male.png'
+#      female: '/img/uploads/female.png'
+#  - model: maggs_contest_level
+#    data:
+#      level: 4
+#      title: 'superman'
+#      required: 200
+#      points: 10
+#      male: '/img/uploads/male.png'
+#      female: '/img/uploads/female.png'

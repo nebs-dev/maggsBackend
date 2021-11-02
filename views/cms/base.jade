@@ -1,0 +1,27 @@
+extends ../layout
+
+block navbar
+    ul.nav.navbar-nav
+        li(class=url.match('/overview') ? 'active' : '')
+            a(href="/cms/")= __('Coupons campaigns')
+        li(class=url.match('/store') ? 'active' : '')
+            a(href="/cms/stores")= __('Stores')
+        li(class=url.match('/appointment') ? 'active' : '')
+            a(href="/cms/appointments")= __('Appointments')
+        li(class=url.match('/contest') ? 'active' : '')
+            a(href="/cms/contests")= __('Contests')
+        - if(currentUser.superadmin)
+            li(class=url.match('/beacon') ? 'active' : '')
+                a(href="/cms/beacons")= __('Beacons')
+            li(class=url.match('/user') ? 'active' : '')
+                a(href="/cms/users")= __('Users')
+            li(class=url.match('/levels') ? 'active' : '')
+                a(href="/cms/levels")= __('Levels')
+            li(class=url.match('/letter') ? 'active' : '')
+                a(href="/cms/letter")= __('Letter Dates')
+    ul.nav.navbar-nav.navbar-right
+        li
+            a(href="/logout")= __('Logout')
+
+block append content
+    block container-content

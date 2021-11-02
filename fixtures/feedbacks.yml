@@ -1,0 +1,12 @@
+fixtures:
+  - model: maggs_feedback
+    data:
+      Question1: 'Wie war Ihr heutiger Besuch bei uns?'
+      Question1Answers: ['sehr angenehm', 'angenehm','unangenehm','sehr unangenehm']
+      Question2: 'Warum haben Sie so entschieden?'
+      store_id: 1
+  - model: maggs_feedback_answer
+    data:
+      FeedbackId: 1
+      Answer1: 3
+      Answer2: 'Warum haben Sie so entschieden?'

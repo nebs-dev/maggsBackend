@@ -1,0 +1,10 @@
+fixtures:
+  - model: maggs_thankyou_message_model
+    data:
+      message: 'Danke für Ihren Besuch im MAGGS Bern. Teilen Sie uns ihre Meinung zum Einkaufserlebnis mit.'
+  - model: maggs_thankyou_message_model
+    data:
+      message: 'Wir danken Ihnen für den Einkauf und freuen uns Sie bald wieder im MAGGS begrüssen zu dürfen.'
+  - model: maggs_thankyou_message_model
+    data:
+      message: 'Hervorragendes Shopping! Wir wünschen Ihnen einen grossartigen Tag und viel Freude an Ihrem Einkauf.'

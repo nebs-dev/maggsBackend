@@ -1,0 +1,30 @@
+extends ./base
+block title
+    title= __('Appointments')
+block append header_styles
+block container-content
+    h1= __('Store with appointments')
+    table.table.table-striped
+        thead
+            tr
+                th= __('Store ID')
+                th= __('Name')
+                th= __('Town')
+                th= __('Postcode')
+                th= __('Contact')
+                th= __('Key')
+                th= __('Secret')
+                th= __('Actions')
+        tbody
+            - for store in stores
+                tr
+                    td= store.id
+                    td= store.name
+                    td= store.town
+                    td= store.postcode
+                    td= store.contactEmail
+                    td= store.key
+                    td= store.secret
+                    td
+                        a(href='/cms/appointments/' + store.id class="btn btn-xs btn-info")= __('View')
+block append footer_scripts

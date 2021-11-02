@@ -1,0 +1,154 @@
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('/fonts/gotham-light-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-light-webfont.woff') format('woff'), url('/fonts/gotham-light-webfont.ttf') format('truetype'); }
+
+body {
+  background: #333333;
+  font-family: Gotham-Light;
+  color: #F9F9F9;
+  padding: 0;
+  margin: 0; }
+  body .card-number {
+    color: #CCCCCC; }
+
+.logo {
+  padding-top: 99px;
+  height: 384px;
+  text-align: center; }
+
+.welcome {
+  color: #CCCCCC;
+  text-align: center;
+  font-size: 30px;
+  height: 384px;
+  padding-top: 50px; }
+
+.customer-info {
+  padding-top: 40px; }
+  .customer-info .customer-info-logo img {
+    width: 211px;
+    height: 130px; }
+  .customer-info .customer-info-name {
+    padding-left: 40px; }
+    .customer-info .customer-info-name .name {
+      font-size: 30px; }
+    .customer-info .customer-info-name .card-number {
+      font-size: 24px; }
+  .customer-info .customer-info-code > div {
+    float: right;
+    width: 130px;
+    height: 130px;
+    overflow: hidden; }
+    .customer-info .customer-info-code > div > img {
+      width: 200px;
+      height: 200px;
+      margin-left: -35px;
+      margin-top: -35px; }
+
+.btn-redeem {
+  background: #333;
+  color: #FFFFFF; }
+  .btn-redeem:focus, .btn-redeem:hover {
+    color: #FFFFFF;
+    background: #333333; }
+
+.modal .modal-content {
+  background: #CCCCCC;
+  color: #000000;
+  margin-top: 80%; }
+.modal .modal-header {
+  border-bottom: 1px solid #000000; }
+  .modal .modal-header h4 {
+    font-size: 22px; }
+
+.title {
+  text-align: center; }
+
+h3 {
+  margin-top: 30px; }
+
+#barcode {
+  width: 130px;
+  height: 130px;
+  overflow: hidden; }
+  #barcode > img {
+    width: 200px;
+    height: 200px;
+    margin-left: -35px;
+    margin-top: -35px; }
+
+.coupons {
+  overflow-y: scroll;
+  max-height: 520px;
+  -webkit-overflow-scrolling: touch;
+  margin: 0; }
+
+.coupon {
+  display: inline-block;
+  border-bottom: 1px solid #000000;
+  padding: 0;
+  margin: 0;
+  background: #D8D8D8;
+  color: #000000;
+  height: 150px;
+  overflow: hidden; }
+  .coupon.last-row {
+    border-bottom: none; }
+  .coupon.coupon-redeem {
+    border: none;
+    margin-left: 15px; }
+  .coupon .coupon-image {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 150px; }
+    .coupon .coupon-image > div {
+      width: 100%; }
+      .coupon .coupon-image > div > img {
+        width: 100%; }
+      .coupon .coupon-image > div.icon {
+        position: absolute; }
+      .coupon .coupon-image > div.pill {
+        position: absolute;
+        top: 10px;
+        left: 85px; }
+        .coupon .coupon-image > div.pill img {
+          width: 90%;
+          -webkit-filter: drop-shadow(0 0 1px #FFFFFF);
+          filter: url(#drop-shadow);
+          -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#FFF')";
+          filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#FFF')"; }
+        .coupon .coupon-image > div.pill span {
+          position: absolute;
+          top: 50px;
+          color: #FFFFFF;
+          font-size: 25px;
+          text-align: center;
+          left: 0;
+          width: 90%; }
+  .coupon .coupon-info {
+    position: relative;
+    padding: 10px 10px 10px 240px;
+    top: 20px; }
+    .coupon .coupon-info > div {
+      display: block;
+      padding: 5px 0; }
+      .coupon .coupon-info > div.coupon-name {
+        padding-right: 115px;
+        max-height: 100px; }
+        .coupon .coupon-info > div.coupon-name h3 {
+          font-size: 35px;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
+      .coupon .coupon-info > div.coupon-date {
+        font-size: 25px;
+        padding-right: 170px; }
+      .coupon .coupon-info > div.coupon-button {
+        position: absolute;
+        right: 10px;
+        top: 23px; }
+        .coupon .coupon-info > div.coupon-button .btn-redeem {
+          font-size: 30px; }

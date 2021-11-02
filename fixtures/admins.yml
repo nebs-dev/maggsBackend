@@ -1,0 +1,13 @@
+fixtures:
+  - model: maggs_user
+    data:
+      email: 'nebs@gmail.com'
+      password: '$2a$10$cmdIjXyKHyVSe5Wyln7oR.1G9edHW.ejF6VOECXejoTBRNo6daFyO'
+      email_confirmed: true
+      superadmin: true
+  - model: maggs_user
+    data:
+      email: 'hrca@gmail.com'
+      password: '$2a$10$oABIzhREhIhcjkVcD5r5fuxaPJEpvMr.8JEe2ouJ/F73vDTSK5Iwy'
+      email_confirmed: true
+      superadmin: true

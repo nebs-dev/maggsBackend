@@ -1,0 +1,46 @@
+extends ./base
+block title
+    title= __('Entry Info')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/coupon_overview.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12
+            h1= __('Entry Info')
+            p
+                a.btn.btn-primary.pull-right(href="/cms/entry/reports/reset/" + entry.id)= __('Reset Reports')
+            p
+                a.btn.btn-primary.pull-right(href="/cms/entry/delete/" + entry.id)= __('Delete Entry')
+            p
+                img(src="#{entry.photo}")
+            p= dateToString(entry.createdAt)
+            p= entry.ranking
+            p= entry.description
+
+    .row
+        .col-sm-12.col-md-12
+            div.form-group
+                h3= __('Customer')
+                table#active_coupon_overview.table.table-striped
+                    thead
+                        tr
+                            th= __('Image')
+                            th= __('Total LIkes')
+                            th= __('Title')
+                            th= __('Points')
+                            th= __('Nickname')
+                            th= __('Gender')
+                            th= __('Card ID')
+                    tbody
+                        tr
+                            td
+                                img(src="#{customer.level.image}")
+                            td= customer.level.totalLikes
+                            td= customer.level.title
+                            td= customer.level.points
+                            td= customer.nickname
+                            td= customer.gender
+                            td= customer.level.card_id
+
+    .row
+        a(href="/cms/contest/view/" + entry.contest_id)= __('Back')

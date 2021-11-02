@@ -1,0 +1,69 @@
+doctype transitional
+html
+head
+    title Maggs
+    meta(content='text/html; charset=iso-8859-1', http-equiv='Content-Type')
+    style(type='text/css').
+        body {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .list a {
+            color: #cc0000;
+            text-transform: uppercase;
+            font-family: Verdana;
+            font-size: 11px;
+            text-decoration: none;
+        }
+body(marginheight='0', topmargin='0', marginwidth='0', bgcolor='#c5c5c5', leftmargin='0')
+    table(cellspacing='0', border='0', style='background-image: url(<%= baseUrl %>images/bg.gif); background-color: #c5c5c5;', cellpadding='0', width='100%')
+        tr
+            td(valign='top')
+                table(cellspacing='0', border='0', align='center', style='background: #fff; border-right: 1px solid #ccc; border-left: 1px solid #ccc;', cellpadding='0', width='600')
+                    tr
+                        td(valign='top')
+                            // header
+                            table(cellspacing='0', border='0', height='157', cellpadding='0', width='600')
+                                tr
+                                    td.main-title(height='13', valign='top', style='padding: 0 20px; font-size: 25px; font-family: Georgia; font-style: italic;', width='600', colspan='2')
+                                        singleline(label='Title')
+                                            Maggs
+                                        img(src='#{baseUrl}/img/home-1-icon-logo@3x.png', height='40', alt='', style='border: 0;')
+                                tr
+                                    td(height='20', valign='top', width='600', colspan='2')
+                                        img(src='#{baseUrl}/img/breaker.jpg', height='20', alt='', style='border: 0;', width='600')
+                                tr
+                                    td.header-bar(valign='top', style='color: #999; font-family: Verdana; font-size: 10px; text-transform: uppercase; padding: 0 20px; height: 15px;', width='400', height='15')
+                                        singleline(label='Title') Maggs
+                                            h1= store.name
+                                    td.header-bar(valign='top', style='color: #999; font-family: Verdana; font-size: 10px; text-transform: uppercase; padding: 0 20px; height: 15px; text-align: right;', width='200')
+                                        currentdayname
+                                            currentday
+                                                currentmonthname
+                                                    currentyear
+                                tr
+                                    td(height='20', valign='top', width='600', colspan='2')
+                                        img(src='#{baseUrl}/img/breaker.jpg', height='20', alt='', style='border: 0;', width='600')
+                                // / header
+                    tr
+                        td
+                            // content
+                            repeater
+                                table(cellspacing='0', border='0', cellpadding='0', width='600')
+                                    tr
+                                        td.article-title(height='45', valign='top', style='padding: 20px 20px 10px; font-family: Georgia; font-size: 20px; font-weight: bold;', width='600')
+                                            singleline(label='Title') Statistische Informationen
+                                    tr
+                                        td.content-copy(valign='top', style='padding: 0 20px 10px; color: #000; font-size: 14px; font-family: Georgia; line-height: 20px;')
+                                            multiline(label='Description') User data:
+                                            p Neue Rückmeldungen von Kunden aus der letzten Woche
+                                            br
+                            // / content
+                    tr
+                        td(valign='top', width='50')
+                            // footer
+                            table(cellspacing='0', border='0', height='20', cellpadding='0', width='600')
+                                tr
+                                    td(height='20', valign='top', width='600', colspan='2')
+                                        img(src='#{baseUrl}/img/breaker.jpg', height='20', alt='', style='border: 0;', width='600')

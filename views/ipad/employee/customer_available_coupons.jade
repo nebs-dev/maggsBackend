@@ -1,0 +1,18 @@
+div.row.coupons
+    if campaigns.length > 0
+        - each campaign, index in campaigns
+            div.coupon.col-md-12
+                div.coupon-image
+                    div.icon
+                        img(src="#{campaign.icon}")
+                    div.pill
+                        img(src="/img/coupon-badge@2x.png")
+                        span= campaign.value
+                div.coupon-info
+                    div.coupon-name
+                        h3= campaign.tagline
+                    div.coupon-date
+                        span #{__('valid until')} #{dayToString(campaign.end_date)}
+    else
+        div.col-md-12
+            h3= __('No coupon found.')

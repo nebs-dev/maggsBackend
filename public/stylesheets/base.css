@@ -1,0 +1,280 @@
+@import url(https://fonts.googleapis.com/css?family=Hammersmith+One);
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('/fonts/gotham-light-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-light-webfont.woff') format('woff'), url('/fonts/gotham-light-webfont.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('/fonts/gotham-book-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-book-webfont.woff') format('woff'), url('/fonts/gotham-book-webfont.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('/fonts/icomoon.eot');
+  src: local('☺'), url('/fonts/icomoon.woff') format('woff'), url('/fonts/icomoon.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('/fonts/gotham-book-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-book-webfont.woff') format('woff'), url('/fonts/gotham-book-webfont.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('/fonts/gotham-light-webfont.eot');
+  src: local('☺'), url('/fonts/gotham-light-webfont.woff') format('woff'), url('/fonts/gotham-light-webfont.ttf') format('truetype'); }
+
+body {
+  background: #F1F1F1;
+  font-family: Gotham-Book;
+  padding-bottom: 72px; }
+
+a {
+  color: #547980; }
+
+.btn-success {
+  background-color: #66CC33;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.47);
+  border-radius: 0px;
+  text-transform: uppercase;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s; }
+  .btn-success:hover {
+    background-color: #66CC33;
+    border-bottom: 2px solid rgba(51, 51, 51, 0.47); }
+
+.btn-primary {
+  background-color: #547980;
+  border-color: #547980;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.47);
+  border-radius: 0px;
+  text-transform: uppercase;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s; }
+  .btn-primary:hover {
+    background-color: #48696F;
+    border-bottom: 2px solid rgba(51, 51, 51, 0.47); }
+
+.hidden {
+  display: none; }
+
+ul.navbar-nav.navbar-right:last-child {
+  margin: 0; }
+
+.navbar-inverse {
+  background-color: #FFF;
+  border: none; }
+
+.employee .navbar-inverse {
+  background-color: #000;
+  height: 80px; }
+
+.employee > .container {
+  padding-top: 5px; }
+
+.navbar-inverse .navbar-nav > li > a {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s; }
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: #66CC33; }
+
+.navbar {
+  border-radius: 0px; }
+
+.map-picker {
+  width: 100%;
+  height: 300px; }
+
+.map-canvas {
+  width: 100%;
+  height: 100%; }
+
+.page-head {
+  margin: 30px 0; }
+  .page-head h1 {
+    margin: 0; }
+
+/* appointments */
+.appointments-timepicker {
+  padding: 0; }
+  .appointments-timepicker li {
+    display: inline-block;
+    width: 120px;
+    min-height: 80px;
+    text-align: center; }
+    .appointments-timepicker li button {
+      width: 100%;
+      height: 80px;
+      background-color: white;
+      border: 1px solid #eee; }
+      .appointments-timepicker li button.active {
+        background-color: #66CC33 !important;
+        color: white; }
+      .appointments-timepicker li button.occupied {
+        background-color: #F44336 !important;
+        color: white; }
+
+.hasHours {
+  background: dodgerblue !important;
+  color: white; }
+  .hasHours.active {
+    box-shadow: inset 0px 0px 12px #b82f25; }
+
+/* tables */
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: white; }
+
+/* Forms */
+.form-control {
+  border-radius: 0px;
+  height: 38px;
+  box-shadow: none;
+  background: white;
+  border-left: 3px solid #C2C2C2; }
+  .form-control:focus {
+    box-shadow: none; }
+
+.float-checkbox {
+  float: left;
+  margin-right: 10px !important; }
+
+.datepicker {
+  border-radius: 0px !important; }
+  .datepicker table {
+    width: 100%; }
+    .datepicker table tr td, .datepicker table tr th {
+      background: white;
+      border-radius: 0px; }
+
+.datepicker-inline {
+  width: 100% !important; }
+
+.nav-tabs {
+  border-bottom: 0px; }
+
+.white-head thead {
+  background-color: white;
+  border: 1px solid #ddd; }
+
+.contest-preview {
+  position: relative;
+  float: right;
+  background: url('/img/contests-preview.png');
+  height: 760px;
+  width: 427px;
+  background-size: 100%; }
+
+.contest-preview .img-holder {
+  position: absolute;
+  top: 146px;
+  left: 21px;
+  height: 155px;
+  width: 386px;
+  overflow: hidden; }
+
+.contest-preview .img-holder img {
+  position: absolute;
+  width: 100%; }
+
+.contest-preview p {
+  display: block;
+  position: absolute;
+  top: 253px;
+  left: 21px;
+  width: 386px;
+  height: 48px;
+  background: #5c7564;
+  opacity: 0.7;
+  font-size: 20px;
+  color: #fff;
+  line-height: 48px;
+  text-align: center; }
+
+.table-button {
+  margin-right: 5px; }
+
+.button-margin-top {
+  margin-top: 5px; }
+
+.ipad-top-right-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px; }
+
+.invisible-button {
+  opacity: 0; }
+
+.icons {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #333333; }
+  .icons .icons_left {
+    position: initial;
+    bottom: auto;
+    left: auto;
+    float: left;
+    margin: 10px 20px; }
+  .icons .icons_right {
+    position: initial;
+    bottom: auto;
+    right: auto;
+    float: right;
+    margin: 10px 20px; }
+
+.phone_icon img {
+  width: 30px;
+  display: block; }
+
+.lock_icon img {
+  width: 30px;
+  display: block; }
+
+html {
+  position: relative;
+  min-height: 100%; }
+
+table#active_contest_overview tbody > tr > td, table#contest_entry_overview tbody > tr > td, table#archived_contest_overview tbody > tr > td {
+  vertical-align: middle; }
+  table#active_contest_overview tbody > tr > td > img, table#contest_entry_overview tbody > tr > td > img, table#archived_contest_overview tbody > tr > td > img {
+    max-width: 75px; }
+
+.future36hours {
+  color: #ff0000; }
+
+.coupon-detail-preview-image-pill {
+  font-family: 'Hammersmith One', sans-serif; }
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) { }
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .stores {
+    overflow-y: scroll;
+    height: 780px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    margin: 0; }
+  .title {
+    margin: 10px 0 0 30px; } }
+
+#tymsgmodels {
+  font-size: 1.1em; }
+
+#tymsg {
+  font-size: 1.2em; }
+
+.form-group {
+  position: relative; }

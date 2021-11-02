@@ -1,0 +1,22 @@
+extends ./base
+block title
+    title= __('Letter Dates')
+block append header_styles
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Letter Dates Info')
+            a.btn.btn-primary.pull-right(href='/cms/letter/create')= __('New letter date')
+    table.table.table-striped
+        thead
+            tr
+                th= __('Created At')
+                th= __('Letter Date')
+                th
+        tbody
+            - for letter in letterDates
+                tr
+                    td= dateToString(letter.createdAt, true)
+                    td= dateToString(letter.date)
+                    td
+                        a(href='/cms/letter/delete/' + letter.id class="btn btn-danger btn-xs")= __('Delete')

@@ -1,0 +1,25 @@
+#campaignsTab {
+  margin-top: 20px;
+}
+a.statistics {
+  margin-left: 20px;
+}
+table#active_coupon_overview,
+table#active_geocoupon_overview,
+table#archived_coupon_overview,
+table#archived_geocoupon_overview {
+  tbody {
+    >tr {
+      >td {
+        vertical-align: middle;
+
+        >img {
+          max-width: 75px;
+        }
+      }
+    }
+  }
+}
+.is-hidden {
+  display: none;
+}

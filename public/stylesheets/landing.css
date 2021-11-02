@@ -1,0 +1,110 @@
+.container {
+  text-align: center; }
+
+.navbar-inverse {
+  background-color: #000000; }
+
+.navbar-logo {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.navbar-logo img {
+  width: 200px; }
+
+.contest-div {
+  margin: auto;
+  position: relative;
+  max-width: 550px;
+  width: 100%;
+  margin-top: 30px; }
+
+.contest-div p {
+  font-weight: bold;
+  font-size: larger;
+  text-align: left; }
+
+.contest-image {
+  width: 100%;
+  display: inline-block; }
+
+.contest-image img {
+  max-width: 100%;
+  width: 100%;
+  height: auto; }
+
+.entry-customer {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  width: 100%;
+  left: 0px;
+  padding: 10px; }
+
+.contest-hashtag {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 10px;
+  font-weight: bold;
+  font-size: larger;
+  color: #ffffff;
+  text-transform: uppercase; }
+
+.entry-customer img {
+  max-width: 100%;
+  height: auto;
+  width: 30px;
+  border-radius: 100%;
+  float: right; }
+
+.entry-customer span {
+  display: inline-block;
+  float: right;
+  margin-left: 10px;
+  line-height: 30px; }
+
+.username {
+  color: #ffffff;
+  font-weight: bold; }
+
+.contest-appstore {
+  max-width: 300px;
+  max-height: 100px;
+  float: left;
+  position: relative;
+  margin-left: -50px; }
+
+.contest-appstore img {
+  max-width: 100%;
+  height: auto; }
+
+.contest-googleplay {
+  max-width: 300px;
+  max-height: 100px;
+  float: right;
+  position: relative;
+  margin-right: -50px;
+  margin-top: -2px; }
+
+.contest-googleplay img {
+  max-width: 100%;
+  height: auto; }
+
+.contest-background {
+  position: absolute;
+  display: inline-block;
+  bottom: -1px;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  padding: 10px;
+  background-color: #5C7564;
+  opacity: 0.85;
+  filter: alpha(opacity=85); }
+
+@media screen and (max-width: 768px) {
+  .contest-appstore, .contest-googleplay {
+    float: none;
+    margin: 20px auto; } }

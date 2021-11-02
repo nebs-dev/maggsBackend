@@ -1,0 +1,32 @@
+extends ./base
+block title
+    title #{__('Customer History')}
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+block container-content
+    a.back-button(href="/employee")
+    h1.title #{__('Recent customers')}
+    div.employee-navigation
+        - if (days) {
+            - each ipadInteractions, day in days
+                div.interactions-header
+                    h3.interactions-header-day= __(dayOfTheWeek(ipadInteractions[0].createdAt)) + ' ' + day
+                div.interactions-list
+                    - each ipadInteraction, index in ipadInteractions
+                        a.btn.button-customer.btn-default(href="/employee/customer/#{ipadInteraction.id}/#{ipadInteraction.maggsCustomer.id}")
+                            h3.button-customer-time= timeToString(ipadInteraction.createdAt)
+                            - if (ipadInteraction.maggsCustomer.firstname && ipadInteraction.maggsCustomer.lastname) {
+                                h3.button-customer-name= ipadInteraction.maggsCustomer.firstname + ' ' + ipadInteraction.maggsCustomer.lastname
+                            - } else {
+                                h3.button-customer-name= __('Anonymous')
+                            - }
+                            h4.button-customer-code= ipadInteraction.maggsCustomer.card_id
+                            div.button-customer-status
+                                div(class=((ipadInteraction.maggsCustomer.hints) ? 'button-customer-status-hints sent' : 'button-customer-status-hints'))= __('Hints')
+                                div(class=((ipadInteraction.maggsThankyouMessage) ? 'button-customer-status-tymsg sent' : 'button-customer-status-tymsg'))= __('Thank you message')
+        - } else {
+            span #{__('No recent customer')}
+        - }

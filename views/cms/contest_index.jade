@@ -1,0 +1,101 @@
+extends ./base
+block title
+    title= __('Contests')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/coupon_overview.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Contests')
+            - if (error && error.length > 0) {
+                div.alert.alert-danger= error
+            - }
+            - if (message && message.length > 0) {
+                div.alert.alert-success= message
+            - }
+            a.btn.btn-primary.pull-right(href="/cms/contest/create")= __('Create new contest')
+
+    div.tab-content
+        // Active contests
+        div.tab-pane.active(role="tabpanel" id="date-campaigns")
+            table#active_coupon_overview.table.table-striped
+                thead
+                    tr
+                        th= __('Image')
+                        th= __('Hashtag')
+                        th= __('Description')
+                        th= __('Start date')
+                        th= __('End date')
+                        th
+                tbody
+                    - each contest in contests
+                        tr
+                            td
+                                img(src="#{contest.icon}")
+                            td= contest.hashtag
+                            td= contest.description
+                            td= dateToString(contest.start_date)
+                            td= dateToString(contest.end_date)
+                            td
+                                a(href='/cms/contest/edit/' + contest.id class="btn btn-default btn-xs table-button")= __('Edit')
+                                a(href='/cms/contest/delete/' + contest.id class="btn btn-danger btn-xs table-button")= __('Delete')
+                                a(href='/cms/contest/view/' + contest.id class="btn btn-info btn-xs table-button")= __('Info')
+
+        // Archived contests
+        - if (archivedContests.length)
+            div.tab-pane.active(role="tabpanel" id="date-campaigns")
+                button.btn.btn-default#showArchivedContests= __('Show/hide archived contests')
+                table#archived_contest_overview.table.table-striped.is-hidden.white-head
+                    thead
+                        tr
+                            th= __('Image')
+                            th= __('Hashtag')
+                            th= __('Description')
+                            th= __('Start date')
+                            th= __('End date')
+                            th
+                    tbody
+                        - each contest in archivedContests
+                            tr
+                                td
+                                    img(src="#{contest.icon}")
+                                td= contest.hashtag
+                                td= contest.description
+                                td= dateToString(contest.start_date)
+                                td= dateToString(contest.end_date)
+                                td
+                                    a(href='/cms/contest/view/' + contest.id class="btn btn-info btn-xs table-button")= __('Info')
+
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Reported contest entries')
+
+    div.tab-content
+        div.tab-pane.active(role="tabpanel" id="date-campaigns")
+            table#contest_entry_overview.table.table-striped
+                thead
+                    tr
+                        th= __('Image')
+                        th= __('Likes')
+                        th= __('Votes')
+                        th= __('Description')
+                        th= __('Reports')
+                        th= __('Created At')
+                        th
+                tbody
+                    - each entry in entries
+                        tr
+                            td
+                                img(src="#{entry.photo}")
+                            td= entry.likes
+                            td= entry.votes
+                            td= entry.description
+                            td= entry.reports
+                            td= entry.createdAt
+                            td
+                                a(href='/cms/entry/' + entry.id class="btn btn-xs btn-info")= __('Info')
+block append footer_scripts
+    script(type="text/javascript")
+        |$('#showArchivedContests').on('click', function(e) {
+        |   $('#archived_contest_overview').toggleClass('is-hidden');
+        |});

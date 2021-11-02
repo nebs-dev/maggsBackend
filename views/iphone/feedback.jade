@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        block title
+            title Home
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/stylesheets/feedback.css")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+    body.feedback
+        block content
+            h1 Ihre Meinung ist uns Gold wert
+            form(id="sendFeedback" role="form" action="/feedback/customer" method="post")
+                div.row
+                    div.col-md-12
+                        div.form-group
+                            label= feedback.Question1
+                            - if (form_errors && form_errors.Answer1) {
+                                div.error #{form_errors.Answer1.msg}
+                            - }
+                            - for answer, index in feedback.Question1Answers
+                                div.radio
+                                    input(type="radio" name="Answer1" value="#{index}" id="Answer1#{index}")
+                                    label(for="Answer1#{index}")
+                                        | #{answer}
+                    div.col-md-12
+                        div.form-group
+                            label= feedback.Question2
+                            div.textarea-wrapper
+                                textarea.form-control(name="Answer2")
+                    div.col-md-12.anonym= __('Feedback is anonymous')
+                    div.col-md-12
+                        input(type="hidden" name="CustomerId" value="#{customer_id}")
+                        input(type="hidden" name="FeedbackId" value="#{feedback.id}")
+                        button.btn.btn-primary(type="submit")= __('send feedback')

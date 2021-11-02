@@ -1,0 +1,107 @@
+@import 'variables';
+@import 'mixins';
+
+body.feedback,
+body.feedback-confirmation{
+  text-align: center;
+  font-family: $Gotham-Book;
+  margin: 0 15px;
+  font-size: 17px;
+  background: #EBEBEB;
+
+  h1 {
+    font-size: 18px;
+  }
+
+  label {
+    font-family: $Gotham-Light;
+  }
+
+  button[type="submit"], a {
+    color: #979797;
+    background: none;
+    border: none;
+    font-size: 17px;
+    padding-top: 15px;
+  }
+
+  select, textarea {
+    line-height: 40px;
+    color: #828282;
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #979797;
+    padding: 0 5px;
+    background: #FAFAFA;
+    margin: 10px 22px;
+  }
+
+  textarea {
+    margin: 0;
+    line-height: 1.2em;
+    min-height: 80px;
+    padding: 5px;
+  }
+
+  .textarea-wrapper {
+    padding: 0 20px;
+  }
+
+  .radio {
+    line-height: 40px;
+    margin: 10px 22px;
+
+    label {
+      font-family: $Gotham-Book;
+      margin: 0;
+      padding: 0 5px;
+      width: 100%;
+      background: rgb(219,219,219);
+      border: 1px solid #979797;
+      text-align: center;
+    }
+
+    input[type="radio"] {
+      display: none;
+
+      &:checked+label {
+        background: #FAFAFA;
+      }
+    }
+  }
+
+  .error {
+    color: #ff3835;
+  }
+  
+  .feedback-confirmation-box {
+    height: 100%;
+  }
+
+  .feedback-confirmation-box-text {
+    margin: 50px;
+  }
+
+  .feedback-confirmation-box-image {
+    width: 100%;
+    margin: 50px 0 0 0;
+
+    img {
+      width: 150px;
+    }
+  }
+
+  .feedback-confirmation-box-button {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    left: 0;
+    right: 0;
+  }
+
+  .anonym {
+    font-size: 12px;
+    font-family: Gotham-Light;
+    margin-top: -15px;
+  }
+}

@@ -1,0 +1,255 @@
+@import 'variables';
+@import 'mixins';
+body {
+  background: $mine-shaft;
+  font-family: $Gotham-Light;
+  color: $alabaster;
+  margin: 0;
+
+  .card-number {
+    color: $silver;
+  }
+}
+
+.logo {
+  padding-top: 99px;
+  height: 384px;
+  text-align: center;
+}
+
+.welcome {
+  color: $silver;
+  text-align: center;
+  font-size: 30px;
+  height: 384px;
+  padding-top: 50px;
+}
+
+.customer-info {
+  padding-top: 40px;
+
+  .customer-info-logo {
+    img {
+      width: 100%;
+      height: 130px;
+    }
+  }
+  .customer-info-name {
+    padding-left: 40px;
+    .name {
+      font-size: 30px;
+    }
+    .card-number {
+      font-size: 24px;
+    }
+  }
+  /*.customer-info-code {
+    >div {
+      float: right;
+      width: 130px;
+      height: 130px;
+      overflow: hidden;
+      >img {
+        width: 200px;
+        height: 200px;
+        margin-left: -35px;
+        margin-top: -35px;
+      }
+    }
+  }*/
+}
+
+
+.qrcode {
+  float: right;
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+  img {
+    width: 200px;
+    height: 200px;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+}
+
+.btn-redeem {
+  background: #333;
+  color: $white;
+
+  &:focus,
+  &:hover {
+    color: $white;
+    background: $mine-shaft;
+  }
+}
+
+.modal {
+  //.modal-dialog {
+  //  margin: 0;
+  //  left: 50%;
+  //  margin-left: -250px;
+  //  top: 50%;
+  //  width: 500px;
+  //  height: 300px;
+  //}
+  .modal-content {
+    background: $silver;
+    color: $black;
+  }
+  .modal-header {
+    border-bottom: 1px solid $black;
+    h4 {
+      font-size: 22px;
+    }
+  }
+
+  transform: translateY(-50%) !important;
+  top: 50% !important;
+}
+
+.title {
+  text-align: center;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+#barcode {
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+  >img {
+    width: 200px;
+    height: 200px;
+    margin-left: -35px;
+    margin-top: -35px;
+  }
+}
+
+
+
+.coupon {
+  display: inline-block;
+  border-bottom: 1px solid $black;
+  padding: 0;
+  margin: 0;
+  background: $alto;
+  color: $black;
+  min-height: 200px;
+  overflow: hidden;
+  width: 100%;
+
+  &.last-row {
+    border-bottom: none;
+  }
+
+  &.coupon-redeem {
+    border: none;
+    margin-left: 15px;
+  }
+
+  .coupon-image {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 150px;
+
+    >div {
+      width: 100%;
+
+      >img {
+        width: 100%;
+      }
+
+      &.icon {
+        position: absolute;
+      }
+      &.pill {
+        position: absolute;
+        top: 10px;
+        left: 85px;
+        img {
+          width: 90%;
+          -webkit-filter: drop-shadow(0 0 1px $white);
+          filter: url(#drop-shadow);
+          -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#FFF')";
+          filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#FFF')";
+        }
+        span {
+          position: absolute;
+          top: 50px;
+          color: $white;
+          font-size: 25px;
+          text-align: center;
+          left: 0;
+          width: 90%;
+        }
+      }
+    }
+  }
+
+  .coupon-info {
+    position: relative;
+    padding: 10px 180px 10px 240px;
+
+    >div {
+      display: block;
+      padding: 5px 0;
+
+      &.coupon-name {
+        h3 {
+          font-size: 30px;
+          margin: 0;
+        }
+      }
+
+      &.coupon-date {
+        font-size: 20px;
+      }
+
+      &.coupon-button {
+        position: absolute;
+        right: 10px;
+        top: 23px;
+
+        .btn-redeem {
+          font-size: 30px;
+        }
+      }
+    }
+    
+  }
+
+  .coupon-redeemed {
+    position: relative;
+    padding: 10px 10px 10px 10px;
+    top: 20px;
+  }
+}
+
+.bootstrap-datetimepicker-widget {
+  color: $mine-shaft;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  border-radius: 0;
+  background: $alto;
+  color: $mine-shaft;
+  border: none;
+  border-bottom: 1px solid $alto;
+}
+
+.nav-tabs>li>a {
+  color: $silver;
+}
+
+.btn-default {
+  color: $mine-shaft;
+  border-radius: 0;
+  margin: 10px 0;
+  max-width: 250px;
+  white-space: normal;
+  background: $alto;
+}

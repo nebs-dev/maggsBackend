@@ -1,0 +1,67 @@
+extends ./base
+block title
+    title #{__('Customer profile')}
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/ipad.css")
+    link(rel="stylesheet" href="/stylesheets/employee.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+block container-content
+    a.back-button(href="/employee/history")
+    div.row.main-title
+        - if ((!inputs.firstname) || (!inputs.lastname)) {
+            h1.col-md-6.customer-name= __('Anonymous')
+        - } else {
+            h1.col-md-6.customer-name #{inputs.firstname} #{inputs.lastname}
+        - }
+        h2.col-md-6.customer-card #{inputs.card_id}
+
+    - if (message && message.length > 0) {
+        div.alert.alert-success= message
+    - }
+
+    ul#campaignsTab.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+            a(href="#customer-hints" role="tab" data-toggle="tab")= __('Hints')
+        li(role="presentation")
+            a(href="#customer-tymsg" role="tab" data-toggle="tab")= __('Thank you message')
+        li(role="presentation")
+            a(href="#customer-available-coupons" role="tab" data-toggle="tab")= __('Available coupons')
+        li(role="presentation")
+            a(href="#customer-redeemed-coupons" role="tab" data-toggle="tab")= __('Redeemed coupons')
+
+    div.tab-content
+        div.tab-pane.active(role="tabpanel" id="customer-hints")
+            form(id="customerProfileForm" action="/employee/customer/edit" method="post")
+                div.row
+                    div.col-md-12
+                        div.form-group
+                            - if (errors && errors.hints) {
+                                span.error #{errors.hints.msg}
+                            - }
+                            textarea#hints.form-control(name="hints")
+                                - if (inputs && inputs.hints) {
+                                    |#{inputs.hints}
+                                - }
+                    input#id.form-control(type="hidden" name="id" value=((inputs && inputs.id) ? '#{inputs.id}' : ''))
+                    input#ipad_interaction_id.form-control(type="hidden" name="ipad_interaction_id" value=((ipadInteraction.id) ? '#{ipadInteraction.id}' : ''))
+                    div.col-md-12
+                        button#save-hints.btn.btn-default(type="submit")= __('Save')
+        div.tab-pane(role="tabpanel" id="customer-tymsg")
+            include ./thankyou
+        div.tab-pane(role="tabpanel" id="customer-available-coupons")
+            include ./customer_available_coupons
+        div.tab-pane(role="tabpanel" id="customer-redeemed-coupons")
+            include ./customer_redeemed_coupons
+
+block append footer_scripts
+    script(type="text/javascript")
+        |$('.cleartymsg').on('click', function(e) {
+        |   $('#tymsg').val('');
+        |});
+        |$('#tymsgmodels').on('change', function(e) {
+        |   if ($(this).val()) {
+        |       $('#tymsg').val($(this).val());
+        |   }
+        |});

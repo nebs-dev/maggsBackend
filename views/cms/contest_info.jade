@@ -1,0 +1,35 @@
+extends ./base
+block title
+    title= __('Contest Entries')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/coupon_overview.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Contests')
+            - if (error && error.length > 0) {
+            div.alert.alert-danger= error
+            - }
+            - if (message && message.length > 0) {
+            div.alert.alert-success= message
+            - }
+    div.tab-content
+        div.tab-pane.active(role="tabpanel" id="date-campaigns")
+            table#active_coupon_overview.table.table-striped
+                thead
+                    tr
+                        th= __('Image')
+                        th= __('Likes')
+                        th= __('Reports')
+                        th= __('Description')
+                        th
+                tbody
+                    - each entry in entries
+                        tr
+                            td
+                                img(src="#{entry.photo}")
+                            td= entry.likes
+                            td= entry.report_count
+                            td= entry.description
+                            td
+                                a(href='/cms/entry/' + entry.id class="btn btn-xs btn-info")= __('Info')

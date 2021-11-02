@@ -1,0 +1,31 @@
+extends ./base
+block title
+    title= __('Letter date create')
+block append header_styles
+    link(rel="stylesheet" href="/stylesheets/forms.css")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-datetimepicker.css")
+block container-content
+    .row
+        .col-sm-12.col-md-12
+            h1= __('Create new letter date')
+        .col-sm-12.col-md-6
+            form(role="form",action="",method="POST",enctype="multipart/form-data")
+                div.form-group
+                    input.form-control#level(required="true" type="text" name="letterDate" class="datepicker")
+
+                input.btn.btn-success.pull-right(type='submit',value=__('Save date'))
+
+block append footer_scripts
+    script(src="/js/moment.js")
+    script(src="/js/bootstrap-datetimepicker.js")
+    script(type="text/javascript")
+        |$(document).on('ready', function() {
+        |   var date = new Date();
+        |   var currentMonth = date.getMonth();
+        |   var currentDate = date.getDate();
+        |   var currentYear = date.getFullYear();
+        |   $('.datepicker').datetimepicker({
+        |       format: 'DD.MM.YYYY',
+        |       minDate: new Date(currentYear, currentMonth, currentDate)
+        |   });
+        |});

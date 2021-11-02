@@ -1,0 +1,35 @@
+extends ./base
+block title
+    title= __('Levels')
+block append header_styles
+block container-content
+    .row
+        .col-sm-12.col-md-12.page-head
+            h1.pull-left= __('Level information')
+            a.btn.btn-primary.pull-right(href='/cms/level/create')= __('New level')
+
+    table.table.table-striped
+        thead
+            tr
+                th= __('Level ID')
+                th= __('Level title')
+                th= __('Points required')
+                th= __('Points')
+                th= __('Female avatar')
+                th= __('Male avatar')
+                th= __('Actions')
+        tbody
+            - for level in levels
+                tr
+                    td= level.id
+                    td= level.title
+                    td= level.required
+                    td= level.points
+                    td
+                        img(height="30px" src="#{level.female}")
+                    td
+                        img(height="30px" src="#{level.male}")
+                    td
+                        a(href='/cms/level/edit/' + level.id class="btn btn-default btn-xs table-button")= __('Edit')
+                        a(href='/cms/level/delete/' + level.id class="btn btn-danger btn-xs table-button")= __('Delete')
+block append footer_scripts
